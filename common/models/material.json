@@ -1,0 +1,84 @@
+{
+  "name": "Material",
+  "base": "PersistedModel",
+  "options": {
+    "idInjection": false,
+    "db2": {
+      "schema": "DB2INST1",
+      "table": "MATERIAL"
+    }
+  },
+  "properties": {
+    "hmotnost": {
+      "type": "number",
+      "required": false,
+      "length": 10,
+      "scale": 3,
+      "db2": {
+        "columnName": "HMOTNOST",
+        "dataType": "DECIMAL",
+        "dataLength": 10,
+        "dataScale": 3,
+        "nullable": "Y"
+      }
+    },
+    "id": {
+      "type": "String",
+      "required": true,
+      "length": 20,
+      "scale": 0,
+      "db2": {
+        "columnName": "ID",
+        "dataType": "VARCHAR",
+        "dataLength": 20,
+        "dataScale": 0,
+        "nullable": "N"
+      }
+    },
+    "kmat": {
+      "type": "String",
+      "id": 2,
+      "required": true,
+      "length": 5,
+      "scale": 0,
+      "db2": {
+        "columnName": "KMAT",
+        "dataType": "VARCHAR",
+        "dataLength": 5,
+        "dataScale": 0,
+        "nullable": "N"
+      }
+    },
+    "mnozstvi": {
+      "type": "number",
+      "required": false,
+      "length": 10,
+      "scale": 3,
+      "db2": {
+        "columnName": "MNOZSTVI",
+        "dataType": "DECIMAL",
+        "dataLength": 10,
+        "dataScale": 3,
+        "nullable": "Y"
+      }
+    },
+    "mvm": {
+      "type": "String",
+      "id": 1,
+      "required": true,
+      "length": 3,
+      "scale": 0,
+      "db2": {
+        "columnName": "MVM",
+        "dataType": "CHARACTER",
+        "dataLength": 3,
+        "dataScale": 0,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
