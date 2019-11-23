@@ -12,7 +12,7 @@ const kafka = require('kafka-node');
 var app = module.exports = loopback();
 
 const Producer = kafka.Producer;
-const client = new kafka.KafkaClient('localhost:2181')
+const client = new kafka.KafkaClient()
 const producer = new Producer(client);
 
 const kafka_topic = 'warehouse-movement';
