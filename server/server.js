@@ -5,14 +5,19 @@
 
 'use strict';
 
+const kafkaHost = process.env.KAFKA_HOST
+const kafkaHostEnv = process.env.KAFKA_HOST_ENV
+const kafkaTopic = process.env.KAFKA_TOPIC
+const kafka = require('kafka-node');
+
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-const kafka = require('kafka-node');
 
 var app = module.exports = loopback();
 
 const Producer = kafka.Producer;
-const client = new kafka.KafkaClient()
+//const client = new kafka.KafkaClient()
+const client = new kafka.KafkaClient({kafkaHost: kafkaHostEnv + ':9092'});
 const producer = new Producer(client);
 
 const kafka_topic = 'warehouse-movement';
@@ -21,18 +26,20 @@ try{
   /**
    * Kafka Producer Configuration
    */ 
+      var mDate = new Date();
+      var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
       producer.on('ready', async function() {
-          console.log('Kafka Producer is Ready');
+          console.log(mDateStr + ': Kafka Producer is Ready');
       })
 
       producer.on('error', function(err) {
           console.log(err);
-          console.log('[kafka-producer -> '+kafka_topic+']: connection errored');
+          console.log(mDateStr + ': [kafka-producer -> '+kafka_topic+']: connection errored');
           throw err;
       })
 }
 catch(e) {
-  console.log(e);
+  console.log(mDateStr + ': ' + e);
 }
 
 app.start = function() {
@@ -86,15 +93,15 @@ boot(app, __dirname, function(err) {
 
         producer.send(payload,(err,data) => {
             if(err) {
-                console.log('[kafka-producer -> '+kafka_topic+']: broker update failed')
+                console.log(mDateStr + ': [kafka-producer -> '+kafka_topic+']: broker update failed')
                 console.log(err)
                 res.status(400).send('kafka errored')
             }
             else {
-                console.log('[kafka-producer -> '+kafka_topic+']: broker update success')
+                console.log(mDateStr + ':[kafka-producer -> '+kafka_topic+']: broker update success')
                 // console.log('payload: ' + JSON.stringify(payload))
                 // console.log('data: ' + JSON.stringify(data))
-                res.status(201).send('kafka topic updated sucessfully')
+                res.status(201).send(mDateStr + ': kafka topic updated sucessfully')
             }
         })
     }
