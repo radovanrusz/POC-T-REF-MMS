@@ -1,10 +1,14 @@
 FROM centos
 
 RUN yum install -y  epel-release
+
+#https://tech.amikelive.com/node-663/quick-tip-installing-nodejs-8-on-centos-7/
 #RUN yum install curl
 #RUN yum remove -y nodejs npm
 #RUN /usr/bin/curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-RUN yum install -y  nodejs npm python2 node-gyp gcc make unixODBC
+RUN /usr/bin/curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+RUN yum install -y   npm python2 node-gyp gcc make unixODBC
+RUN yum install -y   nodejs
 
 RUN mkdir -p /app
 WORKDIR /app
