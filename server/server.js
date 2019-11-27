@@ -28,7 +28,7 @@ try{
    */ 
       var mDate = new Date();
       var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-      producer.on('ready', async function() {
+      producer.on('ready', function() {
           console.log(mDateStr + ': Kafka Producer is Ready');
       })
 
