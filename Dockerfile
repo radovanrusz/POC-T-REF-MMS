@@ -1,7 +1,8 @@
 FROM centos:8
 
 RUN yum install -y  epel-release
-#curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+RUN yum install curl
+curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 RUN yum install -y  nodejs npm python2 node-gyp gcc make unixODBC
 
 RUN mkdir -p /app
