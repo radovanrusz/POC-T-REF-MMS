@@ -2,8 +2,7 @@
   "name": "mms_svc",
   "version": "1.0.0",
   "main": "server/server.js",
-  "engines": {
-    "node": ">=7"
+  "engines": {"node": "8"}
   },
   "scripts": {
     "lint": "eslint .",
