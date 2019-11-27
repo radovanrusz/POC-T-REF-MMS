@@ -2,7 +2,7 @@ FROM centos:8
 
 RUN yum install -y  epel-release
 RUN yum install curl
-curl -sL https://rpm.nodesource.com/setup_8.x | bash -
+#curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 RUN yum install -y  nodejs npm python2 node-gyp gcc make unixODBC
 
 RUN mkdir -p /app
@@ -14,8 +14,8 @@ RUN npm i  && ln -s /app/node_modules/ /node_modules
 ENV PORT 80
 EXPOSE 80
 
-CMD ["node", "server/server.js"]
-#CMD exec /bin/sh -c "trap : TERM INT; (while true; do sleep 1000; done) & wait"
+#CMD ["node", "server/server.js"]
+CMD exec /bin/sh -c "trap : TERM INT; (while true; do sleep 1000; done) & wait"
 
 
 #FROM node:8.9-alpine
