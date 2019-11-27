@@ -6,7 +6,7 @@ RUN yum install -y  epel-release
 #RUN yum install curl
 #RUN yum remove -y nodejs npm
 #RUN /usr/bin/curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-RUN /usr/bin/curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+RUN /usr/bin/curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 RUN yum install -y   npm python2 node-gyp gcc make unixODBC
 RUN yum install -y   nodejs
 
