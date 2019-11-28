@@ -1,3 +1,14 @@
 {
-  "extends": "loopback"
+  "extends": "loopback",
+  "rules": {
+    "trailing-comma": [true, {
+      "singleline": "never",
+      "multiline": {
+        "objects": "always",
+        "arrays": "always",
+        "functions": "never",
+        "typeLiterals": "ignore"
+      }
+    }]
+  }
 }

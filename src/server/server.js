@@ -18,7 +18,7 @@ var app = module.exports = loopback();
 
 const Producer = kafka.Producer;
 //const client = new kafka.KafkaClient()
-const client = new kafka.KafkaClient({kafkaHost: kafkaHost + ':9092'});
+const client = new kafka.KafkaClient({kafkaHost: kafkaHost + ':'+ kafkaPort});
 const producer = new Producer(client);
 
 const kafka_topic = 'warehouse-movement';
