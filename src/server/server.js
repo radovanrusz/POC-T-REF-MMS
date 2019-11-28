@@ -5,8 +5,9 @@
 
 'use strict';
 
-const kafkaHost = process.env.KAFKA_HOST
-const kafkaPort = process.env.KAFKA_PORT
+const kafkaHost = process.env.KAFKA_HOST;
+const kafkaPort = process.env.KAFKA_PORT;
+const kafka_topic = process.env.KAFKA_TOPIC;
 //const kafkaHostEnv = process.env.KAFKA_HOST_ENV
 const kafkaTopic = process.env.KAFKA_TOPIC
 const kafka = require('kafka-node');
@@ -16,12 +17,13 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 
+console.log('Trying to connect to Kafka server: ' + kafkaHost + ':' + kafkaPort + ', topic: ' + kafkaTopic);
 const Producer = kafka.Producer;
 //const client = new kafka.KafkaClient()
 const client = new kafka.KafkaClient({kafkaHost: kafkaHost + ':'+ kafkaPort});
 const producer = new Producer(client);
 
-const kafka_topic = 'warehouse-movement';
+
 
 try{
   /**
@@ -31,7 +33,7 @@ try{
       var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
   
       producer.on('ready', async function() {
-          console.log(mDateStr + ': Kafka Producer is Ready');
+          console.log(mDateStr + ': Kafka Producer is Ready to communicate with Kafka on: ' + kafkaHost + ':' + kafkaPort);
       })
 
       producer.on('error', function(err) {
