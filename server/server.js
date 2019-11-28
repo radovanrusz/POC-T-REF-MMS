@@ -82,7 +82,9 @@ boot(app, __dirname, function(err) {
         var mDate = new Date();
         var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
         console.log(mDateStr + ': app.put /mms');
-      
+        console.log(mDateStr + ':payload: ' + JSON.stringify(payload));
+        console.log(mDateStr + ':data: ' + JSON.stringify(data));
+        
         var mat = req.body
         console.log(mDateStr + ': req.body: ' + JSON.stringify(req.body));
         //console.log(mDateStr + ': req.body: ' + req.body);
