@@ -79,12 +79,22 @@ boot(app, __dirname, function(err) {
 
     app.put('/mms',async (req,res) => {
     try {
-
-      var mat = req.body
+        var mDate = new Date();
+        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+        console.log(mDateStr + ': app.put /mms');
+      
+        var mat = req.body
+        console.log(mDateStr + ': req.body: ' + JSON.stringify(req.body));
+        //console.log(mDateStr + ': req.body: ' + req.body);
+      
         mat.mvm1 = mat.mvm;
         delete mat.mvm;
         mat.mvm2 = 'wh9'
+        var mDate = new Date();
+        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+        console.log(mDateStr + ': app.put /mms');
 
+      
         // console.log('mat: ', mat)
 
         let payload = [{
