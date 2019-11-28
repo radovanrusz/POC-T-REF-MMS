@@ -7,10 +7,11 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
-    "dev": "nodemon .",
+    "start": "node src/server/server.js",
+    "docker": "env-cmd -f ./config/docker.env node src/server/server.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/server/server.js",
     "pretest": "eslint --ignore-path .gitignore .",
-    "test": "jest --watch --runInBand",
+    "test": "env-cmd  -f ./config/test.env jest --watch --runInBand",
     "posttest": "npm run lint && npm audit"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
+    "env-cmd": "^10.0.1",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0"
   },

@@ -6,7 +6,8 @@
 'use strict';
 
 const kafkaHost = process.env.KAFKA_HOST
-const kafkaHostEnv = process.env.KAFKA_HOST_ENV
+const kafkaPort = process.env.KAFKA_PORT
+//const kafkaHostEnv = process.env.KAFKA_HOST_ENV
 const kafkaTopic = process.env.KAFKA_TOPIC
 const kafka = require('kafka-node');
 
@@ -17,7 +18,7 @@ var app = module.exports = loopback();
 
 const Producer = kafka.Producer;
 //const client = new kafka.KafkaClient()
-const client = new kafka.KafkaClient({kafkaHost: kafkaHostEnv + ':9092'});
+const client = new kafka.KafkaClient({kafkaHost: kafkaHost + ':9092'});
 const producer = new Producer(client);
 
 const kafka_topic = 'warehouse-movement';
@@ -99,8 +100,8 @@ boot(app, __dirname, function(err) {
             }
             else {
                 console.log(mDateStr + ':[kafka-producer -> '+kafka_topic+']: broker update success')
-                // console.log('payload: ' + JSON.stringify(payload))
-                // console.log('data: ' + JSON.stringify(data))
+                console.log('payload: ' + JSON.stringify(payload))
+                console.log('data: ' + JSON.stringify(data))
                 res.status(201).send(mDateStr + ': kafka topic updated sucessfully')
             }
         })

@@ -23,14 +23,13 @@
       }
     },
     "id": {
-      "type": "String",
+      "type": "number",
       "required": true,
       "length": 20,
       "scale": 0,
       "db2": {
         "columnName": "ID",
-        "dataType": "VARCHAR",
-        "dataLength": 20,
+        "dataType": "INT",        
         "dataScale": 0,
         "nullable": "N"
       }
