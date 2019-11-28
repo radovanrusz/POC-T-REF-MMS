@@ -21,7 +21,7 @@ RUN npm i  && ln -s /app/node_modules/ /node_modules
 ENV PORT 80
 EXPOSE 80
 
-CMD ["node", "server/server.js"]
+CMD ["node", "src/server/server.js"]
 #CMD exec /bin/sh -c "trap : TERM INT; (while true; do sleep 1000; done) & wait"
 
 
