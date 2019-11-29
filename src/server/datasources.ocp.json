@@ -1,6 +1,6 @@
 {
     "db": {
-      "host": "mms-db2",
+      "host": "mydb2",
       "port": 50000,
       "database": "testdb",
       "password": "db234",
