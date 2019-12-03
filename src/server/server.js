@@ -4,31 +4,26 @@
 // License text available at https://opensource.org/licenses/MIT
 
 'use strict';
-
+/*
 const kafkaHost = process.env.KAFKA_HOST;
 const kafkaPort = process.env.KAFKA_PORT;
-const kafka_topic = process.env.KAFKA_TOPIC;
-//const kafkaHostEnv = process.env.KAFKA_HOST_ENV
-const kafkaTopic = process.env.KAFKA_TOPIC
+const kafkaTopic = process.env.KAFKA_TOPIC;
 const kafka = require('kafka-node');
-
+*/
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
-
+/*
 console.log('Trying to connect to Kafka server: ' + kafkaHost + ':' + kafkaPort + ', topic: ' + kafkaTopic);
 const Producer = kafka.Producer;
-//const client = new kafka.KafkaClient()
 const client = new kafka.KafkaClient({kafkaHost: kafkaHost + ':'+ kafkaPort});
 const producer = new Producer(client);
-
-
-
+*/
+//const producer = require ('../kafka/kafka');
+/*
 try{
-  /**
-   * Kafka Producer Configuration
-   */ 
+  // Kafka Producer Configuration
       var mDate = new Date();
       var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
   
@@ -38,14 +33,14 @@ try{
 
       producer.on('error', function(err) {
           console.log(err);
-          console.log(mDateStr + ': [kafka-producer -> '+kafka_topic+']: connection errored');
+          console.log(mDateStr + ': [kafka-producer -> '+kafkaTopic+']: connection errored');
           throw err;
       })
 }
 catch(e) {
   console.log(mDateStr + ': ' + e);
 }
-
+*/
 app.start = function() {
   // start the web server
   return app.listen(function() {
@@ -79,7 +74,7 @@ boot(app, __dirname, function(err) {
     res.setHeader('Access-Control-Allow-Credentials', true)
     next()
   })
-
+/*
     app.put('/mms',async (req,res) => {
     try {
         var mDate = new Date();
@@ -109,12 +104,12 @@ boot(app, __dirname, function(err) {
 
         producer.send(payload,(err,data) => {
             if(err) {
-                console.log(mDateStr + ': [kafka-producer -> '+kafka_topic+']: broker update failed')
+                console.log(mDateStr + ': [kafka-producer -> '+kafkaTopic+']: broker update failed')
                 console.log(err)
                 res.status(400).send('kafka errored')
             }
             else {
-                console.log(mDateStr + ':[kafka-producer -> '+kafka_topic+']: broker update success')
+                console.log(mDateStr + ':[kafka-producer -> '+kafkaTopic+']: broker update success')
                 console.log('payload: ' + JSON.stringify(payload))
                 console.log('data: ' + JSON.stringify(data))
                 res.status(201).send(mDateStr + ': kafka topic updated sucessfully')
@@ -130,7 +125,7 @@ boot(app, __dirname, function(err) {
         })
     }        
 })
-
+*/
   // start the server if `$ node server.js`
   if (require.main === module)
     app.start();
