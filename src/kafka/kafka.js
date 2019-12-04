@@ -36,7 +36,7 @@ exports.sendEvent = function (kmat, mnozstvi, mvmTo, mvmFrom, hmotnost,resp,cb) 
                     cb(err);
                 } else {
                     console.log('Broker update success: ' + data);
-                    cb(resp,null);
+                    cb(null,resp);
                 }
             });
         })
