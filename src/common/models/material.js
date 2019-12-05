@@ -1,4 +1,5 @@
-var kafka = require('../../kafka/kafka');
+const kafka = require('../../kafka/kafka');
+const sc = require('../../common/scenario');
 
 module.exports = function(Material) {
   Material.findBy = function (kmat,mvm,limit,cb) {
@@ -31,37 +32,38 @@ module.exports = function(Material) {
     Material.find(filter,cb);
   };
 
-  Material.doPut = function (kmat, mnozstvi, mvmTo, mvmFrom, hmotnost, cb) {
-    console.log('mms/put invoked with kmat:'+kmat+', mnozstvi:'+mnozstvi+', mvmTo:'+mvmTo+', mvmFrom:'+mvmFrom+', hmotnost:'+hmotnost);
+  Material.doPut = function (id, kmat, mvm, hmotnost, mnozstvi, cb) {
+    console.log('mms/put invoked with id: '+id+'kmat:'+kmat+', mvm:'+mvm+', hmotnost:'+hmotnost+', mnozstvi:'+mnozstvi);
     // calculate scenario code; TODO: move to separate fuction
-    var scenario = 0;
-    if (kmat) {
-      console.log('kmat present');
-      scenario = 1;
-    };
-    scenario *= 2;
-    if (mvmFrom) {
-      console.log('mvmFrom present');
-      scenario += 1;
-    };
-    scenario *= 2;
-    if (mvmTo) {
-      console.log('mvmTo present');
-      scenario += 1;
-    };
-    scenario *= 2;
-    if (hmotnost) {
-      console.log('hmotnost present');
-      scenario += 1;
-    };
-    scenario *= 2;
-    if (mnozstvi) {
-      console.log('mnozstvi present');
-      scenario += 1;
-    };
-    console.log('Scenario identified: ' + scenario);
+    var scenario = sc.calcScenario(id, kmat, mvm, hmotnost, mnozstvi);
+    // TODO: perform validity chks
+    // ...
     // processing scenarios
-    if (scenario == 18) {  // update hmotnost pres vsechny sklady
+    switch(scenario) {
+      case sc.SC_REGISTER_NEW:
+        var newMat = { "kmat": kmat, "mvm": mvm, "hmotnost": hmotnost, "mnozstvi": mnozstvi };
+        console.log('Registering new item ' + JSON.stringify(newMat) + ' ...');
+        
+        Material.create(newMat, function(err,obj) {
+          if (err) {
+            return err;
+          }
+          console.log("Created row with id: " + obj.id);
+          console.log("Sending kafka event ...")
+          kafka.sendEvent(id, kmat, mvm, hmotnost, mnozstvi, obj, cb);
+        });
+        break;
+      case sc.SC_UPD_KMAT:
+        // code block
+        console.log('Updating kmat to ' + kmat + ' for id ' + id);
+        // TODO:
+        break;
+      default:
+        // code block
+        console.log("Invalid or unknown scenario!")
+    }
+    /*
+    if (scenario == sc.SC_MASS_UPDATE) {  // update hmotnost pres vsechny sklady
       console.log('updating hmotnost of kmat: ' + kmat + ' to: ' + hmotnost);
       var updatedCnt = 0;
       Material.updateAll({"kmat": kmat},{"hmotnost": hmotnost},function(err, info){
@@ -74,6 +76,7 @@ module.exports = function(Material) {
         kafka.sendEvent(kmat, mnozstvi, mvmTo, mvmFrom, hmotnost,'Updated ' + updatedCnt + ' rows.',cb);
       });
     }
+    */
   };
 
   Material.listAll = function(cb) {
@@ -110,11 +113,11 @@ module.exports = function(Material) {
 
   Material.remoteMethod('doPut', {
     accepts: [
+      {arg: 'id', type: 'number'},
       {arg: 'kmat', type: 'string'},
-      {arg: 'mnozstvi', type: 'number'},
-      {arg: 'mvmTo', type: 'string'},
-      {arg: 'mvmFrom', type: 'string'},
-      {arg: 'hmotnost', type: 'number'}
+      {arg: 'mvm', type: 'string'},
+      {arg: 'hmotnost', type: 'number'},
+      {arg: 'mnozstvi', type: 'number'}
     ],
     returns: {arg: 'msg', type: 'string'},
     http: {path: '/mms', verb: 'put'}

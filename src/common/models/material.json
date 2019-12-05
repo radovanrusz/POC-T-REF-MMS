@@ -24,7 +24,7 @@
     },
     "id": {
       "type": "number",
-      "required": true,
+      "id": true,
       "length": 20,
       "scale": 0,
       "db2": {

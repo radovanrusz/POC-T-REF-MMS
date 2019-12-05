@@ -6,16 +6,15 @@ const kafka = require('kafka-node');
 
 
 
-exports.sendEvent = function (kmat, mnozstvi, mvmTo, mvmFrom, hmotnost,resp,cb) {
+exports.sendEvent = function (id, kmat, mvm, hmotnost, mnozstvi,resp,cb) {
     var mDate = new Date();
     var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
     var msg = {};
+    msg.id = id;
     msg.kmat = kmat;
-    msg.mnozstvi = mnozstvi;
-    msg.mvm1 = mvmFrom;
-    msg.mvm2 = mvmTo;
+    msg.mvm = mvm;
     msg.hmotnost = hmotnost;
-
+    msg.mnozstvi = mnozstvi;
     let payload = [{
         topic : kafkaTopic,
         messages : JSON.stringify(msg)
@@ -35,7 +34,7 @@ exports.sendEvent = function (kmat, mnozstvi, mvmTo, mvmFrom, hmotnost,resp,cb) 
                     console.log('Broker update failed: ' + err);
                     cb(err);
                 } else {
-                    console.log('Broker update success: ' + data);
+                    console.log('Broker update success.');
                     cb(null,resp);
                 }
             });
@@ -51,21 +50,5 @@ exports.sendEvent = function (kmat, mnozstvi, mvmTo, mvmFrom, hmotnost,resp,cb) 
         console.log(mDateStr + ': ' + e);
     }
 
-
-
-    /*
-    producer.send(payload,function(err,data) {
-        if(err) {
-            console.log(mDateStr + ': [kafka-producer -> '+kafkaTopic+']: broker update failed')
-            console.log(err);
-            cb(err,null);
-        } else {
-            console.log(mDateStr + ':[kafka-producer -> '+kafkaTopic+']: broker update success')
-            console.log('payload: ' + JSON.stringify(payload))
-            console.log('data: ' + JSON.stringify(data))
-            cb(null, resp);
-        }
-    });
-    */
 }
 
