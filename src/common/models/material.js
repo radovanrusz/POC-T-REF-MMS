@@ -40,10 +40,12 @@ module.exports = function(Material) {
     // ...
     // processing scenarios
     switch(scenario) {
+      case sc.SC_NOTHING2UPDATE:
+          cb(null,{"msg": "Nothing to update!"});
+        break;
       case sc.SC_REGISTER_NEW:
         var newMat = { "kmat": kmat, "mvm": mvm, "hmotnost": hmotnost, "mnozstvi": mnozstvi };
         console.log('Registering new item ' + JSON.stringify(newMat) + ' ...');
-        
         Material.create(newMat, function(err,obj) {
           if (err) {
             return err;
@@ -54,13 +56,53 @@ module.exports = function(Material) {
         });
         break;
       case sc.SC_UPD_KMAT:
-        // code block
         console.log('Updating kmat to ' + kmat + ' for id ' + id);
-        // TODO:
+        var updateData = { "kmat": kmat };
+        Material.updateById(id, kmat, mvm, hmotnost, mnozstvi, updateData, cb);
+        break;
+      case sc.SC_UPD_HMOT:
+        console.log('Updating hmotnost to ' + hmotnost + ' for id ' + id);
+        var updateData = { "hmotnost": hmotnost };
+        Material.updateById(id, kmat, mvm, hmotnost, mnozstvi, updateData, cb);
+        break;
+      case sc.SC_UPD_KMAT_HMOT:
+          console.log('Updating kmat to ' + kmat + ', hmotnost to ' + hmotnost + ' for id ' + id);
+          var updateData = { "kmat": kmat, "hmotnost": hmotnost };
+          Material.updateById(id, kmat, mvm, hmotnost, mnozstvi, updateData, cb);
+        break;
+      case sc.SC_UPD_MNOZ:
+          console.log('Updating mnozstvi to ' + mnozstvi + ' for id ' + id);
+          var updateData = { "mnozstvi": mnozstvi };
+          Material.updateById(id, kmat, mvm, hmotnost, mnozstvi, updateData, cb);
+        break;
+      case sc.SC_UPD_HMOT_MNOZ:
+          console.log('Updating hmotnost to ' + hmotnost + ', mnozstvi to ' + mnozstvi + ' for id ' + id);
+          var updateData = { "hmotnost": hmotnost, "mnozstvi": mnozstvi };
+          Material.updateById(id, kmat, mvm, hmotnost, mnozstvi, updateData, cb);
+        break;
+      case sc.SC_UPD_KMAT_HMOT_MNOZ:
+          console.log('Updating kmat to ' + kmat + ', hmotnost to ' + hmotnost + ', mnozstvi to ' + mnozstvi + ' for id ' + id);
+          var updateData = { "kmat": kmat, "hmotnost": hmotnost, "mnozstvi": mnozstvi };
+          Material.updateById(id, kmat, mvm, hmotnost, mnozstvi, updateData, cb);
+        break;
+      case sc.SC_UPD_KMAT_MNOZ:
+          console.log('Updating kmat to ' + kmat + ', mnozstvi to ' + mnozstvi + ' for id ' + id);
+          var updateData = { "kmat": kmat, "mnozstvi": mnozstvi };
+          Material.updateById(id, kmat, mvm, hmotnost, mnozstvi, updateData, cb);
+        break;
+      case sc.SC_UOM:
+        /*
+        get instance
+        chk mvm(provided)=mvm(DB)
+          - true  : update scenario (nothing to do in this particular case) 
+          - false : move scenario - TODO:
+        */
+        // remove after impl. done!
+        cb(null,{"msg": "Invalid (or not supported yet) scenario!"});
         break;
       default:
-        // code block
-        console.log("Invalid or unknown scenario!")
+        console.log('Invalid (or not supported yet) scenario!');
+        cb(null,{"msg": "Invalid (or not supported yet) scenario!"});
     }
     /*
     if (scenario == sc.SC_MASS_UPDATE) {  // update hmotnost pres vsechny sklady
@@ -80,7 +122,7 @@ module.exports = function(Material) {
   };
 
   Material.listAll = function(cb) {
-    console.log('listAll invoked with callBack: ' + cb);
+    console.log('listAll invoked ...');
     Material.find({}, cb);
   };
 
@@ -122,6 +164,27 @@ module.exports = function(Material) {
     returns: {arg: 'msg', type: 'string'},
     http: {path: '/mms', verb: 'put'}
   });
+
+  // helper methods
+  Material.updateById = function (id, kmat, mvm, hmotnost, mnozstvi,updateData,cb) {
+    Material.findById(id,{}, function(err, inst) {
+      if (err) {
+        console.log('Err. findById fired: ' + JSON.stringify(err));
+        cb(err);
+        return err;
+      }
+      console.log('Found instance to update ' + JSON.stringify(inst));
+      inst.updateAttributes(updateData, function(err, uinst) {
+        if (err) {
+          console.log('Error when updating material instance: ' + JSON.stringify(err));
+          cb(err);
+          return err;
+        }
+        console.log('Updated record: ' + JSON.stringify(uinst));
+        kafka.sendEvent(id, kmat, mvm, hmotnost, mnozstvi, uinst, cb);
+      });
+    });
+  }
 
 };
 

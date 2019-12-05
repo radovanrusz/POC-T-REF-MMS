@@ -1,6 +1,19 @@
+module.exports.SC_NOTHING2UPDATE = 1;      // nothing to update
+module.exports.SC_UPD_KMAT = 3;            // update kmat
+module.exports.SC_UOM = 5;                 // update or move
+module.exports.SC_UOM_KMAT= 7;             // update or move kmat
+module.exports.SC_UPD_HMOT = 9;            // update hmotnost
+module.exports.SC_UPD_KMAT_HMOT = 11;      // update kmat and hmotnost
 
-module.exports.SC_REGISTER_NEW = 30; // insert new record
-module.exports.SC_UPD_KMAT = 3;
+module.exports.SC_UPD_MNOZ = 17;           // update mnozstvi
+module.exports.SC_UPD_KMAT_MNOZ = 19;      // update kmat, mnozstvi
+
+module.exports.SC_UPD_HMOT_MNOZ = 25;      // update hmotnost, mnozstvi
+module.exports.SC_UPD_KMAT_HMOT_MNOZ = 27; // update kmat, hmotnost, mnozstvi
+
+module.exports.SC_REGISTER_NEW = 30;       // insert new record
+
+
 //TODO: define constants according valid scenarios
 
 module.exports.calcScenario = function (id, kmat, mvm, hmotnost, mnozstvi) {
