@@ -51,15 +51,17 @@ exports.sendEvent1 = function (inst, kmat, mvm, hmotnost, mnozstvi, updateData, 
     }
 }
 
-exports.sendEvent = function (id, kmat, mvm, hmotnost, mnozstvi,resp,cb) {
+exports.sendEvent = function (id, kmat, mvm1, mvm2, hmotnost, mnozstvi,resp,cb) {
     var mDate = new Date();
     var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
     var msg = {};
     msg.id = id;
     msg.kmat = kmat;
-    msg.mvm = mvm;
+    msg.mvm1 = mvm1;
+    msg.mvm2 = mvm2;
     msg.hmotnost = hmotnost;
     msg.mnozstvi = mnozstvi;
+    msg.timestamp = new Date().toISOString();
     let payload = [{
         topic : kafkaTopic,
         messages : JSON.stringify(msg)

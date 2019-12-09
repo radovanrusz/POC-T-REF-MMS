@@ -174,7 +174,7 @@ module.exports = function(Material) {
       }
       console.log("Created row with id: " + inst.id);
       console.log("Sending kafka event ...")
-      kafka.sendEvent(inst.id, kmat, mvm, hmotnost, mnozstvi, inst, cb);
+      kafka.sendEvent(inst.id, kmat, null, mvm, hmotnost, mnozstvi, inst, cb);
     });
   }
 
@@ -195,7 +195,7 @@ module.exports = function(Material) {
           return err;
         }
         console.log('Updated record: ' + JSON.stringify(uinst));
-        kafka.sendEvent(id, kmat, mvm, hmotnost, mnozstvi, uinst, cb);
+        kafka.sendEvent(id, kmat, inst.mvm, mvm, hmotnost, mnozstvi, uinst, cb);
       });
     });
   };
@@ -210,7 +210,7 @@ module.exports = function(Material) {
           return err;
         }
         console.log('Updated record: ' + JSON.stringify(uinst));
-        kafka.sendEvent(inst.id, kmat, mvm, hmotnost, mnozstvi, uinst, cb);
+        kafka.sendEvent(inst.id, kmat, inst.mvm, mvm, hmotnost, mnozstvi, uinst, cb);
       });
     } else {
       console.log('Nothing to update!');
