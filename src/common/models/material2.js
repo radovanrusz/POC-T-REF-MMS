@@ -52,7 +52,7 @@ module.exports = function(Material) {
           cb(null,{"msg": "Nothing to update!"});
         break;
       case sc.SC_REGISTER_NEW:
-        Material.createNew(kmat, mvm, hmotnost, mnozstvi, cb);
+        Material.createNew(kmat, mvm, hmotnost, mnozstvi, null, next, cb);
         break;
       case sc.SC_UPD_KMAT:
         var updateData = { "kmat": kmat };
@@ -168,13 +168,13 @@ module.exports = function(Material) {
   Material.createNew = function (kmat, mvm, hmotnost, mnozstvi, cb) {
     var newMat = { "kmat": kmat, "mvm": mvm, "hmotnost": hmotnost, "mnozstvi": mnozstvi };
     console.log('Registering new item ' + JSON.stringify(newMat) + ' ...');
-    Material.create(newMat, function(err,inst) {
+    Material.create(newMat, function(err,obj) {
       if (err) {
         return err;
       }
-      console.log("Created row with id: " + inst.id);
+      console.log("Created row with id: " + obj.id);
       console.log("Sending kafka event ...")
-      kafka.sendEvent(inst.id, kmat, mvm, hmotnost, mnozstvi, inst, cb);
+      kafka.sendEvent(id, kmat, mvm, hmotnost, mnozstvi, obj, cb);
     });
   }
 
@@ -284,7 +284,57 @@ module.exports = function(Material) {
         }
       }
     });
-  }
+  };
+
+    // New Helper methods
+    Material.createNew1 = function (kmat, mvm, hmotnost, mnozstvi, updateData, next, cb) {
+        var newMat = { "kmat": kmat, "mvm": mvm, "hmotnost": hmotnost, "mnozstvi": mnozstvi };
+        console.log('Registering new item ' + JSON.stringify(newMat) + ' ...');
+        Material.create(newMat, function(err,inst) {
+            if (err) {
+                return err;
+            }
+            console.log("Created row with id: " + inst.id);
+            if (next == null) { cb(null,inst); }
+            else { next(inst, kmat, mvm, hmotnost, mnozstvi,next,cb); }
+        });
+    }
+
+
+    // next = function (inst, kmat, mvm, hmotnost, mnozstvi, updateData, next, cb)
+    Material.findInst1 = function (id, kmat, mvm, hmotnost, mnozstvi, updateData, next, cb) {
+        console.log('Seeking instance by id: ' + id);
+        Material.findById(id,{}, function(err, inst) {
+            if (err) {
+                console.log('Err. findById fired: ' + JSON.stringify(err));
+                cb(err);
+                return err;
+            }
+            console.log('Found instance to update ' + JSON.stringify(inst));
+            if (next == null) { cb(null,inst); }
+            else { next(inst, kmat, mvm, hmotnost, mnozstvi,next,cb); }
+        });
+    }
+
+    Material.updateInst1 = function (inst, kmat, mvm, hmotnost, mnozstvi, updateData, next, cb) {
+        if (updateData) {
+            console.log('Updating instance by ' + JSON.stringify(updateData) + ' for id ' + inst.id);
+            inst.updateAttributes(updateData, function(err, inst) {
+                if (err) {
+                    console.log('Error when updating material instance: ' + JSON.stringify(err));
+                    cb(err);
+                    return err;
+                }
+                console.log('Updated record: ' + JSON.stringify(inst));
+                if (next == null) { cb(null,inst); }
+                else { next(inst, kmat, mvm, hmotnost, mnozstvi,next,cb); }
+            });
+        } else {
+            console.log('Nothing to update!');
+            cb(null,{"msg": "Nothing to update!"});
+        }
+    }
+
 
 };
 
