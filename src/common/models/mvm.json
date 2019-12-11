@@ -1,0 +1,31 @@
+{
+    "name": "Mvm",
+    "base": "PersistedModel",
+    "options": {
+        "idInjection": false,
+        "db2": {
+            "schema": "DB2INST1",
+            "table": "MVM2"
+        }
+    },
+    "properties": {
+        "mvm": {
+            "type": "String",
+            "id": true,
+            "required": false,
+            "length": 3,
+            "scale": 0,
+            "db2": {
+                "columnName": "MVM",
+                "dataType": "CHARACTER",
+                "dataLength": 3,
+                "dataScale": 0,
+                "nullable": "N"
+            }
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}

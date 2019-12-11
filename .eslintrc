@@ -1,7 +1,7 @@
 {
   "extends": "loopback",
   "rules": {
-    "trailing-comma": [true, {
+    "trailing-comma": [1, {
       "singleline": "never",
       "multiline": {
         "objects": "always",

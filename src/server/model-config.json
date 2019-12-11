@@ -16,5 +16,9 @@
   "Material": {
     "dataSource": "db",
     "public": true
+  },
+  "Mvm": {
+    "dataSource": "db",
+    "public": true
   }
 }
