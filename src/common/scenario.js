@@ -1,7 +1,9 @@
+'use strict';
+
 module.exports.SC_NOTHING2UPDATE = 1;       // nothing to update
 module.exports.SC_UPD_KMAT = 3;             // update kmat
 module.exports.SC_UOM = 5;                  // update or move
-module.exports.SC_UOM_KMAT= 7;              // update or move kmat
+module.exports.SC_UOM_KMAT = 7;             // update or move kmat
 module.exports.SC_UPD_HMOT = 9;             // update hmotnost
 module.exports.SC_UPD_KMAT_HMOT = 11;       // update kmat and hmotnost
 module.exports.SC_UOM_HMOT = 13;            // update or move hmmot
@@ -21,7 +23,7 @@ module.exports.FLOW_CS = 1;                 // wrkflow create, send
 module.exports.FLOW_FUS = 2;                // wrkflow find, update, send
 module.exports.FLOW_FLUCS = 3;              // wrkflow find, logic, update, (create,) send
 
-module.exports.calcScenario = function (id, kmat, mvm, hmotnost, mnozstvi) {
+module.exports.calcScenario = function(id, kmat, mvm, hmotnost, mnozstvi) {
     var scenario = 0;
     if (mnozstvi) {
         console.log('mnozstvi present');
@@ -49,4 +51,4 @@ module.exports.calcScenario = function (id, kmat, mvm, hmotnost, mnozstvi) {
     };
     console.log('Scenario identified: ' + scenario);
     return scenario;
-}
+};

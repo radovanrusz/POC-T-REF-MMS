@@ -1,16 +1,16 @@
-module.exports = function(Mvm) {
+'use strict';
 
+module.exports = function(Mvm) {
     Mvm.listAll = function(cb) {
         console.log('mvms/listAll invoked');
         Mvm.find({}, cb);
         console.log('mvms/listAll passed.');
-        
     };
 
     Mvm.remoteMethod('listAll', {
         returns: {
             arg: 'mvms',
-            type: 'array' 
+            type: 'array'
         },
         http: {
             path: '/listall',
@@ -23,4 +23,4 @@ module.exports = function(Mvm) {
     Mvm.disableRemoteMethodByName('deleteById'); // Removes (DELETE) /products/:id
     Mvm.disableRemoteMethodByName('updateAll');  // Removes (POST) /products/update
     Mvm.disableRemoteMethodByName('prototype.updateAttributes');
-}
+};

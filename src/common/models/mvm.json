@@ -5,7 +5,7 @@
         "idInjection": false,
         "db2": {
             "schema": "DB2INST1",
-            "table": "MVM2"
+            "table": "MVM"
         }
     },
     "properties": {

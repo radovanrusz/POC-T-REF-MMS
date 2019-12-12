@@ -1,14 +1,10 @@
 {
   "extends": "loopback",
   "rules": {
-    "trailing-comma": [1, {
-      "singleline": "never",
-      "multiline": {
-        "objects": "always",
-        "arrays": "always",
-        "functions": "never",
-        "typeLiterals": "ignore"
-      }
-    }]
+    "indent": ["error", 4],  
+    "comma-dangle": ["error", "never"],
+    "max-len": ["error", { "comments": 120 }, { "code": 120 }]
   }
 }
+
+ 
