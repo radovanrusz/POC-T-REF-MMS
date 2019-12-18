@@ -66,28 +66,36 @@ exports.sendEventP = function (id, kmat, mvm1, mvm2, hmotnost, mnozstvi) {
             topic : kafkaTopic,
             messages : JSON.stringify(msg)
         }];
-        console.log('Going to use producer ..');
+        console.log(mDateStr + ': Going to use producer ..');
         try {
             // Kafka Producer Configuration 
-            console.log('Trying to connect to Kafka server: ' + kafkaHost + ':' + kafkaPort + ', topic: ' + kafkaTopic);
+            mDate = new Date();
+            mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+            console.log(mDateStr + ': Trying to connect to Kafka server: ' + kafkaHost + ':' + kafkaPort + ', topic: ' + kafkaTopic);
             const Producer = kafka.Producer;
             const client = new kafka.KafkaClient({kafkaHost: kafkaHost + ':'+ kafkaPort});
             const producer = new Producer(client);
         
             producer.on('ready', async function() {
+                mDate = new Date();
+                mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
                 console.log(mDateStr + ': Kafka Producer is Ready to communicate with Kafka on: ' + kafkaHost + ':' + kafkaPort);
                 let push_status = producer.send(payload, function (err, data) {
+                    mDate = new Date();
+                    mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
                     if (err) {
-                        console.log('Broker update failed: ' + err);
+                        console.log(mDateStr + ': Broker update failed: ' + err);
                         reject(err);
                     } else {
-                        console.log('Broker update success.');
+                        console.log(mDateStr + ': Broker update success.');
                         resolve(data);
                     }
                 });
             })
         
             producer.on('error', function(err) {
+                mDate = new Date();
+                mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
                 console.log(err);
                 console.log(mDateStr + ': [kafka-producer -> '+kafkaTopic+']: connection errored');
                 reject(err);
