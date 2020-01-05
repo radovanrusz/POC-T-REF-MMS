@@ -17,7 +17,7 @@
             "db2": {
                 "columnName": "HMOTNOST",
                 "dataType": "DECIMAL",
-                "dataLength": 10,
+                "dataPrecision": 10,
                 "dataScale": 3,
                 "nullable": "Y"
             }
@@ -55,7 +55,7 @@
             "db2": {
                 "columnName": "MNOZSTVI",
                 "dataType": "DECIMAL",
-                "dataLength": 10,
+                "dataPrecision": 10,
                 "dataScale": 3,
                 "nullable": "Y"
             }

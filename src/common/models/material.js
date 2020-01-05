@@ -5,7 +5,6 @@ var Promise = require('promise');
 var app = require('../../server/server');
 
 module.exports = function(Material) {
-
     Material.listAll = function(cb) {
         var mDate = new Date();
         var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
@@ -71,12 +70,12 @@ module.exports = function(Material) {
             // app.dataSources.db.transaction(
             promises.push(
                 Material.doSinglePut(item.id, item.kmat, item.mvm, item.hmotnost, item.mnozstvi)
-                .then(function(inst) {
-                    var mDate = new Date();
-                    var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                    console.log(mDateStr, ': Resulting record instance: ' + JSON.stringify(inst));
-                    return (inst);
-                })
+                    .then(function(inst) {
+                        var mDate = new Date();
+                        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                        console.log(mDateStr, ': Resulting record instance: ' + JSON.stringify(inst));
+                        return (inst);
+                    })
             );
         }); // forEach
         Promise.all(promises).then(function(responses) {
@@ -199,127 +198,127 @@ module.exports = function(Material) {
                     break;
                 case sc.FLOW_CS:
                     return Material.createNew(kmat, mvm, hmotnost, mnozstvi)
-                    .then(function(inst) {
-                        kafka.sendEventP(
-                            inst.id,
-                            inst.kmat,
-                            null,
-                            inst.mvm,
-                            inst.hmotnost,
-                            inst.mnozstvi,
-                            inst
-                        )
-                        .then(function(kdata) {
-                            tx.commit(function(err) {
-                                console.log('Committed');
+                        .then(function(inst) {
+                            kafka.sendEventP(
+                                inst.id,
+                                inst.kmat,
+                                null,
+                                inst.mvm,
+                                inst.hmotnost,
+                                inst.mnozstvi,
+                                inst
+                            )
+                                .then(function(kdata) {
+                                    tx.commit(function(err) {
+                                        console.log('Committed');
+                                    });
+                                    resolve(inst);
+                                });
+                        })
+                        .catch(function(err) {
+                            var mDate = new Date();
+                            var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                            console.log(mDateStr, ': Scenario ', scenario, ' catched error: ', err);
+                            tx.rollback(function(err) {
+                                console.log('Rolled back!');
                             });
-                            resolve(inst);
-                        });
-                    })
-                    .catch(function(err) {
-                        var mDate = new Date();
-                        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                        console.log(mDateStr, ': Scenario ', scenario, ' catched error: ', err);
-                        tx.rollback(function(err) {
-                            console.log('Rolled back!');
-                        });
-                        reject(err);
+                            reject(err);
                         // cb(err);
-                    });
+                        });
                     console.log('Should not get here(1)!');
                     break;
                 case sc.FLOW_FUS:
                     return Material.findInst(id)
-                    .then(function(inst) {
-                        return Material.updateInst(inst, updateData);
-                    })
-                    .then(function(inst) {
-                        kafka.sendEventP(inst.id, kmat, inst.mvm, mvm, hmotnost, mnozstvi, inst)
-                        .then(function(kdata) {
-                            tx.commit(function(err) {
-                                var mDate = new Date();
-                                var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                                console.log(mDateStr, ': Committed');
+                        .then(function(inst) {
+                            return Material.updateInst(inst, updateData);
+                        })
+                        .then(function(inst) {
+                            kafka.sendEventP(inst.id, kmat, inst.mvm, mvm, hmotnost, mnozstvi, inst)
+                                .then(function(kdata) {
+                                    tx.commit(function(err) {
+                                        var mDate = new Date();
+                                        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                                        console.log(mDateStr, ': Committed');
+                                    });
+                                    resolve(inst);
+                                });
+                        })
+                        .catch(function(err) {
+                            var mDate = new Date();
+                            var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                            console.log(mDateStr, ': Scenario ', scenario, ' catched error: ', err);
+                            tx.rollback(function(err) {
+                                console.log('Rolled back!');
                             });
-                            resolve(inst);
-                        });
-                    })
-                    .catch(function(err) {
-                        var mDate = new Date();
-                        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                        console.log(mDateStr, ': Scenario ', scenario, ' catched error: ', err);
-                        tx.rollback(function(err) {
-                            console.log('Rolled back!');
-                        });
-                        reject(err);
+                            reject(err);
                         // cb(err);
-                    });
+                        });
                     break;
                 case sc.FLOW_FLUCS:
                     return Material.findInst(id)
-                    .then(function(inst) {
+                        .then(function(inst) {
                         // perform logic; result will influence next steps
-                        return Material.doLogic(inst, kmat, mvm, hmotnost, mnozstvi, updateData);
-                    })
-                    .then(function(resp) {
+                            return Material.doLogic(inst, kmat, mvm, hmotnost, mnozstvi, updateData);
+                        })
+                        .then(function(resp) {
                         // calc updateData
-                        updateData = resp.updateData;
-                        var mDate = new Date();
-                        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                        console.log(mDateStr, ': updateData: ' + JSON.stringify(updateData));
-                        // calc insertData
-                        insertData = resp.insertData;
-                        console.log(mDateStr, ': insertData: ' + JSON.stringify(insertData));
-                        if (updateData) {
-                            return Material.updateInst(resp.inst, updateData);
-                        } else { return resp.inst; };
-                    })
-                    .then(function(inst) {
-                        if (insertData) { // optionally perform create step
-                            return Material.createNew(
-                                insertData.kmat,
-                                insertData.mvm,
-                                insertData.hmotnost,
-                                insertData.mnozstvi
-                            );
-                        } else { return inst; }
-                    })
-                    .then(function(inst) {
-                        if (updateData || insertData) {
-                            kafka.sendEventP(inst.id, kmat, inst.mvm, mvm, hmotnost, mnozstvi, inst)
-                            .then(function(kdata) {
-                                tx.commit(function(err) {
-                                    var mDate = new Date();
-                                    var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                                    console.log(mDateStr, ': Committed');
-                                });
-                                resolve(inst);
-                            });
-                        } else {
+                            updateData = resp.updateData;
                             var mDate = new Date();
                             var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                            console.log(mDateStr, ': No update or insert, send kafka event skipped.');
-                            // cb(null,{"msg": "Nothing to update!"});
+                            console.log(mDateStr, ': updateData: ' + JSON.stringify(updateData));
+                            // calc insertData
+                            insertData = resp.insertData;
+                            console.log(mDateStr, ': insertData: ' + JSON.stringify(insertData));
+                            if (updateData) {
+                                return Material.updateInst(resp.inst, updateData);
+                            } else { return resp.inst; };
+                        })
+                        .then(function(inst) {
+                            if (insertData) { // optionally perform create step
+                                return Material.createNew(
+                                    insertData.kmat,
+                                    insertData.mvm,
+                                    insertData.hmotnost,
+                                    insertData.mnozstvi
+                                );
+                            } else { return inst; }
+                        })
+                        .then(function(inst) {
+                            if (updateData || insertData) {
+                                kafka.sendEventP(inst.id, kmat, inst.mvm, mvm, hmotnost, mnozstvi, inst)
+                                    .then(function(kdata) {
+                                        tx.commit(function(err) {
+                                            var mDate = new Date();
+                                            var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                                            console.log(mDateStr, ': Committed');
+                                        });
+                                        resolve(inst);
+                                    });
+                            } else {
+                                var mDate = new Date();
+                                var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                                console.log(mDateStr, ': No update or insert, send kafka event skipped.');
+                                // cb(null,{"msg": "Nothing to update!"});
+                                tx.rollback(function(err) {
+                                    var mDate = new Date();
+                                    var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                                    console.log(mDateStr, ': Rolled back - cleaning the trans ...');
+                                });
+                                reject({'msg': 'Nothing to update!'});
+                            }
+                        })
+                        .catch(function(err) {
+                            var mDate = new Date();
+                            var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+                            console.log(mDateStr, ': Scenario ', scenario, ' catched error: ', err);
                             tx.rollback(function(err) {
                                 var mDate = new Date();
                                 var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                                console.log(mDateStr, ': Rolled back - cleaning the trans ...');
+                                console.log(mDateStr, ': Rolled back!');
                             });
-                            reject({'msg': 'Nothing to update!'});
-                        }
-                    })
-                    .catch(function(err) {
-                        var mDate = new Date();
-                        var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                        console.log(mDateStr, ': Scenario ', scenario, ' catched error: ', err);
-                        tx.rollback(function(err) {
-                            var mDate = new Date();
-                            var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-                            console.log(mDateStr, ': Rolled back!');
-                        });
-                        reject(err);
+                            reject(err);
                         // cb(err);
-                    });
+                        });
                     break;
                 default:
                     var mDate = new Date();
