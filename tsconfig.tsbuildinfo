@@ -1398,15 +1398,15 @@
         "signature": "a463d6c6762ac9116d97c3022f26711c7245039e659e86edc4834f8fb1b2fbe9"
       },
       "./src/services/kafka-client-service.service.ts": {
-        "version": "e9336fcab84e11e8121074d73349b85f39685767a5e7a41a53101c4a6c1ebc3d",
-        "signature": "39c0b7c7fc50b7df89f9a3cba2ccbc1fd2defb07e9f195a29f728b43887bc240"
+        "version": "7d1b2a405a0906b240f933166aa7af36e710025d00398037c7fc45d95e033aee",
+        "signature": "9d1073733748693ba8f5f5e9173e82c37fb1a26771e7092269ffdcdbe6cf2657"
       },
       "./src/services/index.ts": {
         "version": "d29cff9f747796202c3f6dd669fdd74f245fbf13df1aec7cd8e7f01d2d00592e",
         "signature": "d29cff9f747796202c3f6dd669fdd74f245fbf13df1aec7cd8e7f01d2d00592e"
       },
       "./src/controllers/material-post-with-kafka-submit.controller.ts": {
-        "version": "a4a706c15940ab5102c32ddfba12ae78306f93e25a52b7a3827c56d4e7b0aa44",
+        "version": "4b8eec34db2629e5b45bf602f6cb380302a387fadd377ff6180f54409313b8a5",
         "signature": "6230858d6acab38b6cba72326ce5b4833647919c0cf877c735fddc89383ffa96"
       },
       "./src/controllers/index.ts": {
@@ -6533,188 +6533,8 @@
       "./src/controllers/material-standard.controller.ts",
       "./src/services/scenario-simulator.service.ts",
       "./node_modules/kafka-node/types/index.d.ts",
-      [
-        "./src/services/kafka-client-service.service.ts",
-        [
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 787,
-            "length": 23,
-            "messageText": "Expected 0 arguments, but got 1.",
-            "category": 1,
-            "code": 2554
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 845,
-            "length": 2,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'id' does not exist on type '{}'."
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 864,
-            "length": 4,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'kmat' does not exist on type '{}'."
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 887,
-            "length": 4,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'mvm1' does not exist on type '{}'."
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 910,
-            "length": 4,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'mvm2' does not exist on type '{}'."
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 933,
-            "length": 8,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'hmotnost' does not exist on type '{}'."
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 964,
-            "length": 8,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'mnozstvi' does not exist on type '{}'."
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 995,
-            "length": 9,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'timestamp' does not exist on type '{}'."
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1073,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1312,
-            "length": 23,
-            "messageText": "Expected 0 arguments, but got 1.",
-            "category": 1,
-            "code": 2554
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1411,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1434,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1465,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1578,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1601,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1783,
-            "length": 23,
-            "messageText": "Expected 0 arguments, but got 1.",
-            "category": 1,
-            "code": 2554
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1903,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 1926,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 2089,
-            "length": 23,
-            "messageText": "Expected 0 arguments, but got 1.",
-            "category": 1,
-            "code": 2554
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 2505,
-            "length": 23,
-            "messageText": "Expected 0 arguments, but got 1.",
-            "category": 1,
-            "code": 2554
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 2618,
-            "length": 4,
-            "messageText": "'this' implicitly has type 'any' because it does not have a type annotation.",
-            "category": 1,
-            "code": 2683
-          },
-          {
-            "file": "./src/services/kafka-client-service.service.ts",
-            "start": 2773,
-            "length": 3,
-            "messageText": "Cannot find name 'err'.",
-            "category": 1,
-            "code": 2304
-          }
-        ]
-      ],
       "./src/services/index.ts",
+      "./src/controllers/material-post-with-kafka-submit.controller.ts",
       "./src/controllers/index.ts",
       "./node_modules/@types/color-name/index.d.ts",
       "./node_modules/@types/debug/index.d.ts",
@@ -6725,7 +6545,7 @@
       "./node_modules/@types/mocha/index.d.ts",
       "./node_modules/@types/on-finished/index.d.ts",
       "./node_modules/@types/type-is/index.d.ts",
-      "./src/controllers/material-post-with-kafka-submit.controller.ts"
+      "./src/services/kafka-client-service.service.ts"
     ]
   },
   "version": "3.7.4"

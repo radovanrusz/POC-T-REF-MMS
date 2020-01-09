@@ -54,18 +54,28 @@ export class MaterialPostWithKafkaSubmitController {
     const scenario = this.scenarioSimulator.calcScenario(id, kmat, mvm, hmotnost, mnozstvi)
     console.log(`C picking scenario: ${JSON.stringify(scenario)}`)
 
-    //vytvoreni transakce
-    const tx = await this.materialRepository.beginTransaction(IsolationLevel.READ_COMMITTED);
+    //vytvoreni transakce, timeout pro rollback 3sec
+    const tx = await this.materialRepository.beginTransaction({ isolationLevel: IsolationLevel.READ_COMMITTED, timeout: 3000 });
 
     //insert v ramci transakce
     const result1 = await this.materialRepository.create(material, { transaction: tx });
     console.log(`C db update result: ${JSON.stringify(result1)} -> going to commit/rollback`)
-    //const result2 = await this.kafkaClientServices.sendEventP(id, kmat, mvm, 'test', hmotnost, mnozstvi)
-    console.log(`C kafka sumbit result: ${JSON.stringify(result1)} -> going to commit/rollback`)
-    await tx.commit()
-    //await tx.rollback()
-    console.log(`aFter commit/rollback -> finishing...`)
+
+    //Prace s Kafka je take externalizovano do sdilene sluzby
+    try {
+      const result2 = await this.kafkaClientServices.sendEventP(id, kmat, mvm, 'test', hmotnost, mnozstvi)
+
+      console.log(`C kafka submit result: ${JSON.stringify(result2)} -> going to commit`)
+      await tx.commit()
+      return result1
+    } catch (err) {
+      console.log(`C kafka submit failure: ${JSON.stringify(err)} -> going to cancel`)
+      await tx.rollback()
+
+    }
+
     return result1
+
   }
 
 }

@@ -8,6 +8,17 @@ import {
 } from 'kafka-node';
 require('dotenv').config();
 
+
+interface Message {
+  id: number;
+  kmat: string;
+  mvm1: string,
+  mvm2: string,
+  hmotnost: number,
+  mnozstvi: number,
+  timestamp: string
+}
+
 @bind({ scope: BindingScope.TRANSIENT })
 export class KafkaClientServiceService {
   kafkaTopic: string
@@ -15,49 +26,55 @@ export class KafkaClientServiceService {
   kafkaHost: string
 
   constructor(/* Add @inject to inject parameters */) {
-    this.kafkaHost = process.env.KAFKA_HOST ?? 'localhost';
-    this.kafkaPort = process.env.KAFKA_PORT ?? '9092';
-    this.kafkaTopic = process.env.KAFKA_TOPIC ?? 'warehouse-movement';
+
   }
 
-  sendEventP = async function (id: number, kmat: string, mvm1: string, mvm2: string, hmotnost: number, mnozstvi: number) {
+  async sendEventP(id: number, kmat: string, mvm1: string, mvm2: string, hmotnost: number, mnozstvi: number) {
+    console.log(`ENV: Running with kafka topic: ${process.env.KAFKA_TOPIC}`)
+    const kafkaHost = process.env.KAFKA_HOST ?? 'localhost';
+    const kafkaPort = process.env.KAFKA_PORT ?? '9092';
+    const kafkaTopic = process.env.KAFKA_TOPIC ?? 'warehouse-movement';
+    //console.log(`VAR: Running with kafka topic: ${kafkaTopic}`)
+
+
     return new Promise(function (resolve, reject) {
       let mDate = new Date();
-      let mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-      const msg = {};
-      msg.id = id;
-      msg.kmat = kmat;
-      msg.mvm1 = mvm1;
-      msg.mvm2 = mvm2;
-      msg.hmotnost = hmotnost;
-      msg.mnozstvi = mnozstvi;
-      msg.timestamp = new Date().toISOString();
+      let mDateStr = mDate.toLocaleDateString('cs-CS');
+      const msg: Message = {
+        id: id,
+        kmat: kmat,
+        mvm1: mvm1,
+        mvm2: mvm2,
+        hmotnost: hmotnost,
+        mnozstvi: mnozstvi,
+        timestamp: new Date().toISOString()
+      }
       const payload = [{
-        topic: this.kafkaTopic,
+        topic: kafkaTopic,
         messages: JSON.stringify(msg)
       }];
       console.log(mDateStr + ': Going to use producer ..');
       try {
         // Kafka Producer Configuration
         mDate = new Date();
-        mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-        console.log(mDateStr + ': Trying to connect to Kafka server: ' + this.kafkaHost + ':' + this.kafkaPort + ', topic: ' + this.kafkaTopic);
+        mDateStr = mDate.toLocaleDateString('cs-CS');
+        console.log(mDateStr + ': Trying to connect to Kafka server: ' + kafkaHost + ':' + kafkaPort + ', topic: ' + kafkaTopic);
         //const Producer = kafka.Producer;
-        const client = new KafkaClient({ kafkaHost: this.kafkaHost + ':' + this.kafkaPort });
+        const client = new KafkaClient({ kafkaHost: kafkaHost + ':' + kafkaPort });
         const producer = new Producer(client);
 
         producer.on('ready', async function () {
           mDate = new Date();
-          mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-          console.log(mDateStr + ': Kafka Producer is Ready to communicate with Kafka on: ' + this.kafkaHost + ':' + this.kafkaPort);
-          const push_status = producer.send(payload, function (err, data) {
+          mDateStr = mDate.toLocaleDateString('cs-CS');
+          console.log(mDateStr + ': Kafka Producer is Ready to communicate with Kafka on: ' + kafkaHost + ':' + kafkaPort);
+          producer.send(payload, function (err, data) {
             mDate = new Date();
-            mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
+            mDateStr = mDate.toLocaleDateString('cs-CS');
             if (err) {
-              console.log(mDateStr + ': Broker update failed: ' + err);
+              console.error(mDateStr + ': Broker update failed: ' + err);
               reject(err);
             } else {
-              console.log(mDateStr + ': Broker update success.');
+              console.log(`${mDateStr}: Broker update success: ${JSON.stringify(data)}`);
               resolve(data);
             }
           });
@@ -65,13 +82,13 @@ export class KafkaClientServiceService {
 
         producer.on('error', function (err) {
           mDate = new Date();
-          mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
-          console.log(err);
-          console.log(mDateStr + ': [kafka-producer -> ' + this.kafkaTopic + ']: connection errored');
+          mDateStr = mDate.toLocaleDateString('cs-CS');
+          console.error(err);
+          console.error(mDateStr + ': [kafka-producer -> ' + kafkaTopic + ']: connection errored');
           reject(err);
         })
-      } catch (e) {
-        console.log(mDateStr + ': ' + e);
+      } catch (err) {
+        console.error(mDateStr + ': ' + err);
         reject(err);
       }
 
