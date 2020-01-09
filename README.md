@@ -28,3 +28,4 @@ Osobne to delam v ramci integrovaneho terminalu Visual code, ktery si rozdelim n
 Tento krok volne vychazi z tutorialu na [adrese](https://loopback.io/doc/en/lb4/todo-list-tutorial-controller.html)
 
 * Vy
+
