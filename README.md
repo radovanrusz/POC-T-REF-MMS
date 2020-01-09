@@ -3,6 +3,9 @@
 ## Predpoklady
 * Globalne instalovana verze LB4 (npm i -g @loopback/cli)
 
+## Omezeni
+* LB4 neumi generovat vice repositories na stejnym datasource -> Kafka repository s transakcni podporou je vytvorena rucne
+
 ## Zmeny proti projektu LB3
 * Model databaze (tabulka MATERIAL) se vytvori pomoci prikazu **lb4 discover**. Nevytvari se rucne.
 
@@ -34,11 +37,18 @@ Osobne to delam v ramci integrovaneho terminalu Visual code, ktery si rozdelim n
 # Discovery existujici databaze DB2
 * Vytvorit MODEL pomoci prikazu lb4 discover
 	* Vybrat model **MATERIAL**
-	* Bohuzel automaticke generovani vykazuje drobne chyby, ktere je nutno rucne opravit v souboru **/src/models/material.model.ts**. Jedna se opravu spatne urcenych datovych typu, a ne-povinneho atributu **id**
-* Vytvorit
+	* Bohuzel automaticke generovani vykazuje drobne chyby, ktere je nutno rucne opravit v souboru **/src/models/material.model.ts**. Jedna se opravu spatne urcenych datovych typu, a ne-povinneho atributu **id** (required: true -> required: false)
+* Vytvorit repository (MaterialRepository) pro danny model pomoci prikazu **lb4 repository**
+* Vyvorit standardni controller **lb4 controller** (MaterialStandard -> REST Controller with CRUD functions -> Material -> MaterialRepository -> id -> number -> y -> /materials) pro danny model umoznujici zakladni CRUD operace nad tabulkou MATERIAL
+* Otestovat novy controller pomoci web exploreru
 
 # Rucni vytvoreni "controlleru" pro integraci s Kafka
-Tento krok volne vychazi z tutorialu na [adrese](https://loopback.io/doc/en/lb4/todo-list-tutorial-controller.html)
+Pro vytvoreni transakcni funkcionality analogicke s V3 (v ramci existujici db transacke ulozit data do kafky a nasledne realizovat rizeny commit/rollback) jsou nutne tyto kroky:
 
-* Vy
+* Vytvorit prazdny controller **lb4 controller** (MaterialPostWithKafkaSubmit -> Empty Controller)
+* Vytvorit novou repository s podporou transakci
+	* Kopirovat /src/repositories/material.repository.ts do **material.with.tx.repository.ts**
+	* Prislusne upravit soubory **material.with.tx.repository.ts** a **index.ts**
+*
+
 

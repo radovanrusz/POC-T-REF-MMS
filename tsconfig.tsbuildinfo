@@ -1353,9 +1353,13 @@
         "version": "45ac6b384a90c37eda84de4b822c777663295fb3e0541a83b78a9f6967c05670",
         "signature": "80e3e158fbbb22cab068c3f91ec262086822f90ca629e02984060b8caf571993"
       },
-      "./src/controllers/index.ts": {
-        "version": "fc1c62a010b4b620687414cfee2cd8c79c31ba5de4a0467a78f6189d8b4728f5",
-        "signature": "fc1c62a010b4b620687414cfee2cd8c79c31ba5de4a0467a78f6189d8b4728f5"
+      "./src/models/material.model.ts": {
+        "version": "643ad34bba30293462e3a3a2636a4123ae3c2a4728a0c3c71db4d29ebf16821c",
+        "signature": "cf13aea8f580436d89ba4f524f82eec4d57d0c41a29afa1c0ce5aa7fb339ad5c"
+      },
+      "./src/models/index.ts": {
+        "version": "1e4f65db9c20bb5734695c02e99b1998c72ef22316fff60a7e6bd503d44fafc0",
+        "signature": "1e4f65db9c20bb5734695c02e99b1998c72ef22316fff60a7e6bd503d44fafc0"
       },
       "./src/datasources/db2.datasource.config.json": {
         "version": "93fcce8f9974a65ed8c76e12cf0f9998e644a47997cf225f92a75e6651af4b7d",
@@ -1369,13 +1373,29 @@
         "version": "0b4729187c25cdc4d2e9ace2a5ef2225ec3cfe63e9696b427f71ae017ca6feb0",
         "signature": "0b4729187c25cdc4d2e9ace2a5ef2225ec3cfe63e9696b427f71ae017ca6feb0"
       },
-      "./src/models/material.model.ts": {
-        "version": "f62fdb555618679b98821a061b9ef0c391c8027b05fd5447d27ba76c9aaa7b08",
-        "signature": "cf13aea8f580436d89ba4f524f82eec4d57d0c41a29afa1c0ce5aa7fb339ad5c"
+      "./src/repositories/material.repository.ts": {
+        "version": "d2ec49362c6f7f7d97f23ed3cc2c6abc21f7dd3c7ea3e984d7773c13e834af0f",
+        "signature": "6b8dad2c62e2838baedc69f56df85b590d33b92993253a3968ab8952d34889b5"
       },
-      "./src/models/index.ts": {
-        "version": "1e4f65db9c20bb5734695c02e99b1998c72ef22316fff60a7e6bd503d44fafc0",
-        "signature": "1e4f65db9c20bb5734695c02e99b1998c72ef22316fff60a7e6bd503d44fafc0"
+      "./src/repositories/material.with.tx.repository.ts": {
+        "version": "e6ddbe772bd055f6c3af365b4ad7a91a64243a33edc66dc50263d78f6ef12df0",
+        "signature": "5c1c0498d1e432d7f1723bff50b1e8e9552e60901135626179093d1836631014"
+      },
+      "./src/repositories/index.ts": {
+        "version": "a967556978a3aec73eb1ac9e711a81c04b53d2210e2a8a3f90b3dc0b355e5f2d",
+        "signature": "a967556978a3aec73eb1ac9e711a81c04b53d2210e2a8a3f90b3dc0b355e5f2d"
+      },
+      "./src/controllers/material-standard.controller.ts": {
+        "version": "f0e91a9022104eea3bebe9e848379f83d2a201a735fbd90d177dfac4d8c83a00",
+        "signature": "323ddb20c28ca56c0322b39631b48295eaf33c0d11c1408711695af3ced23156"
+      },
+      "./src/controllers/material-post-with-kafka-submit.controller.ts": {
+        "version": "1870fc1019bcb2ddd12f53b0cc2dda9f22e2152e5f504a8b8317f03f85bcc8df",
+        "signature": "c8af2faa1f7c7dd90214496e61bb684e64ce6e9e73e711faabdef40b5c106792"
+      },
+      "./src/controllers/index.ts": {
+        "version": "3799db619b221e92f38ec81c568835c92b9fa501d41a38ac269242653bc873f6",
+        "signature": "3799db619b221e92f38ec81c568835c92b9fa501d41a38ac269242653bc873f6"
       },
       "./node_modules/@types/color-name/index.d.ts": {
         "version": "f0cb4b3ab88193e3e51e9e2622e4c375955003f1f81239d72c5b7a95415dad3e",
@@ -3689,8 +3709,13 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "./src/controllers/index.ts": [
-        "./src/controllers/ping.controller.ts",
+      "./src/models/material.model.ts": [
+        "./node_modules/@loopback/repository/index.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/models/index.ts": [
+        "./src/models/material.model.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3710,13 +3735,44 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "./src/models/material.model.ts": [
+      "./src/repositories/material.repository.ts": [
         "./node_modules/@loopback/repository/index.d.ts",
+        "./src/models/index.ts",
+        "./src/datasources/index.ts",
+        "./node_modules/@loopback/core/index.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "./src/models/index.ts": [
-        "./src/models/material.model.ts",
+      "./src/repositories/material.with.tx.repository.ts": [
+        "./node_modules/@loopback/repository/index.d.ts",
+        "./src/models/index.ts",
+        "./src/datasources/index.ts",
+        "./node_modules/@loopback/core/index.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/repositories/index.ts": [
+        "./src/repositories/material.repository.ts",
+        "./src/repositories/material.with.tx.repository.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/controllers/material-standard.controller.ts": [
+        "./node_modules/@loopback/repository/index.d.ts",
+        "./node_modules/@loopback/rest/index.d.ts",
+        "./src/models/index.ts",
+        "./src/repositories/index.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/controllers/material-post-with-kafka-submit.controller.ts": [
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/controllers/index.ts": [
+        "./src/controllers/ping.controller.ts",
+        "./src/controllers/material-standard.controller.ts",
+        "./src/controllers/material-post-with-kafka-submit.controller.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -5984,8 +6040,11 @@
       "./src/controllers/ping.controller.ts": [
         "./node_modules/@loopback/rest/index.d.ts"
       ],
-      "./src/controllers/index.ts": [
-        "./src/controllers/ping.controller.ts"
+      "./src/models/material.model.ts": [
+        "./node_modules/@loopback/repository/index.d.ts"
+      ],
+      "./src/models/index.ts": [
+        "./src/models/material.model.ts"
       ],
       "./src/datasources/db2.datasource.ts": [
         "./node_modules/@loopback/core/index.d.ts",
@@ -5994,11 +6053,29 @@
       "./src/datasources/index.ts": [
         "./src/datasources/db2.datasource.ts"
       ],
-      "./src/models/material.model.ts": [
+      "./src/repositories/material.repository.ts": [
+        "./src/datasources/index.ts",
+        "./node_modules/@loopback/repository/index.d.ts",
+        "./src/models/index.ts"
+      ],
+      "./src/repositories/material.with.tx.repository.ts": [
+        "./src/datasources/index.ts",
+        "./node_modules/@loopback/repository/index.d.ts",
+        "./src/models/index.ts"
+      ],
+      "./src/repositories/index.ts": [
+        "./src/repositories/material.repository.ts",
+        "./src/repositories/material.with.tx.repository.ts"
+      ],
+      "./src/controllers/material-standard.controller.ts": [
+        "./src/repositories/index.ts",
+        "./src/models/index.ts",
         "./node_modules/@loopback/repository/index.d.ts"
       ],
-      "./src/models/index.ts": [
-        "./src/models/material.model.ts"
+      "./src/controllers/index.ts": [
+        "./src/controllers/ping.controller.ts",
+        "./src/controllers/material-standard.controller.ts",
+        "./src/controllers/material-post-with-kafka-submit.controller.ts"
       ],
       "./node_modules/@types/color-name/index.d.ts": [
         "./node_modules/@types/node/util.d.ts",
@@ -6385,10 +6462,15 @@
       "./src/__tests__/acceptance/home-page.acceptance.ts",
       "./src/__tests__/acceptance/ping.controller.acceptance.ts",
       "./src/controllers/ping.controller.ts",
-      "./src/controllers/index.ts",
+      "./src/models/material.model.ts",
+      "./src/models/index.ts",
       "./src/datasources/db2.datasource.config.json",
       "./src/datasources/db2.datasource.ts",
       "./src/datasources/index.ts",
+      "./src/repositories/material.repository.ts",
+      "./src/repositories/material.with.tx.repository.ts",
+      "./src/repositories/index.ts",
+      "./src/controllers/material-post-with-kafka-submit.controller.ts",
       "./node_modules/@types/color-name/index.d.ts",
       "./node_modules/@types/debug/index.d.ts",
       "./node_modules/@types/eslint-visitor-keys/index.d.ts",
@@ -6398,8 +6480,8 @@
       "./node_modules/@types/mocha/index.d.ts",
       "./node_modules/@types/on-finished/index.d.ts",
       "./node_modules/@types/type-is/index.d.ts",
-      "./src/models/material.model.ts",
-      "./src/models/index.ts"
+      "./src/controllers/material-standard.controller.ts",
+      "./src/controllers/index.ts"
     ]
   },
   "version": "3.7.4"

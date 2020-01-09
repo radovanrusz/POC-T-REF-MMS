@@ -13,7 +13,7 @@ export class Material extends Entity {
 
   @property({
     type: 'number',
-    required: true,
+    required: false,
     length: 4,
     precision: 4,
     scale: 0,
