@@ -3,6 +3,9 @@
 ## Predpoklady
 * Globalne instalovana verze LB4 (npm i -g @loopback/cli)
 
+## Zmeny proti projektu LB3
+* Model databaze (tabulka MATERIAL) se vytvori pomoci prikazu **lb4 discover**. Nevytvari se rucne.
+
 
 ## Kroky pro aktivaci hot reload pri vyvoji:
 * npm install nodemon --save-dev
@@ -18,11 +21,21 @@ Osobne to delam v ramci integrovaneho terminalu Visual code, ktery si rozdelim n
 * Vytvorit aplikaci (skeleton): lb4 app
 	* Potvrdit predvolene hodnoty
 	* Bohuzel projekt se vytvori v pod-adresari (nutno rucne prekopirovat zpet do root adresare projektu)
+
 * Vytvorit DB2 datasource: lb4 datasource
 	* Pojmenovat db2
 	* Zadat zname hodnoty pro db testdb
 
+* Overit zakladni funkcionalitu
+	*	Pomoci prikazu: npm run localDev -> http://localhost:3000
+	* Zkusit hot reload: napr. pridat radek v souboru **src/application.ts**
+
+
 # Discovery existujici databaze DB2
+* Vytvorit MODEL pomoci prikazu lb4 discover
+	* Vybrat model **MATERIAL**
+	* Bohuzel automaticke generovani vykazuje drobne chyby, ktere je nutno rucne opravit v souboru **/src/models/material.model.ts**. Jedna se opravu spatne urcenych datovych typu, a ne-povinneho atributu **id**
+* Vytvorit
 
 # Rucni vytvoreni "controlleru" pro integraci s Kafka
 Tento krok volne vychazi z tutorialu na [adrese](https://loopback.io/doc/en/lb4/todo-list-tutorial-controller.html)

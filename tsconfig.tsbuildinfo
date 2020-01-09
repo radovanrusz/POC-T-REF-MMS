@@ -1369,6 +1369,14 @@
         "version": "0b4729187c25cdc4d2e9ace2a5ef2225ec3cfe63e9696b427f71ae017ca6feb0",
         "signature": "0b4729187c25cdc4d2e9ace2a5ef2225ec3cfe63e9696b427f71ae017ca6feb0"
       },
+      "./src/models/material.model.ts": {
+        "version": "f62fdb555618679b98821a061b9ef0c391c8027b05fd5447d27ba76c9aaa7b08",
+        "signature": "cf13aea8f580436d89ba4f524f82eec4d57d0c41a29afa1c0ce5aa7fb339ad5c"
+      },
+      "./src/models/index.ts": {
+        "version": "1e4f65db9c20bb5734695c02e99b1998c72ef22316fff60a7e6bd503d44fafc0",
+        "signature": "1e4f65db9c20bb5734695c02e99b1998c72ef22316fff60a7e6bd503d44fafc0"
+      },
       "./node_modules/@types/color-name/index.d.ts": {
         "version": "f0cb4b3ab88193e3e51e9e2622e4c375955003f1f81239d72c5b7a95415dad3e",
         "signature": "f0cb4b3ab88193e3e51e9e2622e4c375955003f1f81239d72c5b7a95415dad3e"
@@ -3702,6 +3710,16 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/models/material.model.ts": [
+        "./node_modules/@loopback/repository/index.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/models/index.ts": [
+        "./src/models/material.model.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./node_modules/@types/color-name/index.d.ts": [
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
@@ -5973,6 +5991,15 @@
         "./node_modules/@loopback/core/index.d.ts",
         "./node_modules/@loopback/repository/index.d.ts"
       ],
+      "./src/datasources/index.ts": [
+        "./src/datasources/db2.datasource.ts"
+      ],
+      "./src/models/material.model.ts": [
+        "./node_modules/@loopback/repository/index.d.ts"
+      ],
+      "./src/models/index.ts": [
+        "./src/models/material.model.ts"
+      ],
       "./node_modules/@types/color-name/index.d.ts": [
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
@@ -6017,9 +6044,6 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "./src/datasources/index.ts": [
-        "./src/datasources/db2.datasource.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -6364,6 +6388,7 @@
       "./src/controllers/index.ts",
       "./src/datasources/db2.datasource.config.json",
       "./src/datasources/db2.datasource.ts",
+      "./src/datasources/index.ts",
       "./node_modules/@types/color-name/index.d.ts",
       "./node_modules/@types/debug/index.d.ts",
       "./node_modules/@types/eslint-visitor-keys/index.d.ts",
@@ -6373,7 +6398,8 @@
       "./node_modules/@types/mocha/index.d.ts",
       "./node_modules/@types/on-finished/index.d.ts",
       "./node_modules/@types/type-is/index.d.ts",
-      "./src/datasources/index.ts"
+      "./src/models/material.model.ts",
+      "./src/models/index.ts"
     ]
   },
   "version": "3.7.4"
