@@ -55,6 +55,8 @@
     "@loopback/rest": "^1.25.1",
     "@loopback/rest-explorer": "^1.4.7",
     "@loopback/service-proxy": "^1.3.14",
+    "dotenv": "^8.2.0",
+    "kafka-node": "^5.0.0",
     "loopback-connector-db2": "^2.2.0"
   },
   "devDependencies": {

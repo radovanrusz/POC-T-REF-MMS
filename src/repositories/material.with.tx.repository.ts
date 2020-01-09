@@ -1,9 +1,9 @@
-import { DefaultCrudRepository } from '@loopback/repository';
+import { DefaultTransactionalRepository } from '@loopback/repository';
 import { Material, MaterialRelations } from '../models';
 import { Db2DataSource } from '../datasources';
 import { inject } from '@loopback/core';
 
-export class MaterialWithTxRepository extends DefaultCrudRepository<
+export class MaterialWithTxRepository extends DefaultTransactionalRepository<
   Material,
   typeof Material.prototype.id,
   MaterialRelations

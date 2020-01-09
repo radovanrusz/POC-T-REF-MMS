@@ -16,7 +16,7 @@ const repository_1 = require("@loopback/repository");
 const models_1 = require("../models");
 const datasources_1 = require("../datasources");
 const core_1 = require("@loopback/core");
-let MaterialWithTxRepository = class MaterialWithTxRepository extends repository_1.DefaultCrudRepository {
+let MaterialWithTxRepository = class MaterialWithTxRepository extends repository_1.DefaultTransactionalRepository {
     constructor(dataSource) {
         super(models_1.Material, dataSource);
     }

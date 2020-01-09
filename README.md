@@ -44,11 +44,11 @@ Osobne to delam v ramci integrovaneho terminalu Visual code, ktery si rozdelim n
 
 # Rucni vytvoreni "controlleru" pro integraci s Kafka
 Pro vytvoreni transakcni funkcionality analogicke s V3 (v ramci existujici db transacke ulozit data do kafky a nasledne realizovat rizeny commit/rollback) jsou nutne tyto kroky:
-
-* Vytvorit prazdny controller **lb4 controller** (MaterialPostWithKafkaSubmit -> Empty Controller)
+* Pridat npm moduly pro Kafku: npm install kafka-node
 * Vytvorit novou repository s podporou transakci
 	* Kopirovat /src/repositories/material.repository.ts do **material.with.tx.repository.ts**
-	* Prislusne upravit soubory **material.with.tx.repository.ts** a **index.ts**
-*
+	* Prislusne upravit soubory **material.with.tx.repository.ts** a **index.ts** (klicove: zmenit DefaultCrudRepository -> **DefaultTransactionalRepository**)
+* Vytvorit prazdny controller **lb4 controller** (MaterialPostWithKafkaSubmit -> Empty Controller)
+	* Pridat imports a injects prikazy pro novou repository
 
 
