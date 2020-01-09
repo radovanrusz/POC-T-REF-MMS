@@ -26,7 +26,7 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'number',
-        required: true,
+        required: false,
         length: 4,
         precision: 4,
         scale: 0,

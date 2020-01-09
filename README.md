@@ -72,3 +72,4 @@ Pro vytvoreni transakcni funkcionality analogicke s V3 (v ramci existujici db tr
 	* Pridat imports a injects prikazy pro novou repository
 
 
+
