@@ -27,7 +27,9 @@ let MaterialStandardController = class MaterialStandardController {
         return this.materialRepository.count(where);
     }
     async find(filter) {
-        return this.materialRepository.find(filter);
+        const result1 = this.materialRepository.find(filter);
+        console.log(JSON.stringify(result1));
+        return result1;
     }
     async updateAll(material, where) {
         return this.materialRepository.updateAll(material, where);

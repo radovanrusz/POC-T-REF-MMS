@@ -45,7 +45,7 @@ let MaterialPostWithKafkaSubmitController = class MaterialPostWithKafkaSubmitCon
             return result1;
         }
         catch (err) {
-            console.log(`C kafka submit failure: ${JSON.stringify(err)} -> going to cancel`);
+            console.log(`C kafka submit failure: ${JSON.stringify(err)} -> going to rollback`);
             await tx.rollback();
         }
         return result1;

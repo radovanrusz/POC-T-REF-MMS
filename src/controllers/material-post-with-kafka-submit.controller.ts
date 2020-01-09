@@ -64,14 +64,12 @@ export class MaterialPostWithKafkaSubmitController {
     //Prace s Kafka je take externalizovano do sdilene sluzby
     try {
       const result2 = await this.kafkaClientServices.sendEventP(id, kmat, mvm, 'test', hmotnost, mnozstvi)
-
       console.log(`C kafka submit result: ${JSON.stringify(result2)} -> going to commit`)
       await tx.commit()
       return result1
     } catch (err) {
-      console.log(`C kafka submit failure: ${JSON.stringify(err)} -> going to cancel`)
+      console.log(`C kafka submit failure: ${JSON.stringify(err)} -> going to rollback`)
       await tx.rollback()
-
     }
 
     return result1

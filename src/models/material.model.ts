@@ -3,45 +3,42 @@ import { Entity, model, property } from '@loopback/repository';
 @model({ settings: { idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' } } })
 export class Material extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     length: 10,
-    precision: 10,
-    scale: 3,
-    db2: { columnName: 'HMOTNOST', dataType: 'DECIMAL', dataLength: 10, dataPrecision: undefined, dataScale: 3, nullable: 'Y' },
+    db2: { columnName: 'HMOTNOST', dataType: 'DECIMAL', dataLength: 10, dataPrecision: 10, dataScale: 3, nullable: 'Y' },
   })
   hmotnost?: string;
 
   @property({
     type: 'number',
-    required: false,
+    required: true,
     length: 4,
     precision: 4,
     scale: 0,
     id: 1,
-    db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 4, dataPrecision: undefined, dataScale: 0, nullable: 'N' },
+    db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 4, dataPrecision: 4, dataScale: 0, nullable: 'N' },
   })
   id: number;
 
   @property({
     type: 'string',
     length: 12,
-    db2: { columnName: 'KMAT', dataType: 'CHARACTER', dataLength: 12, dataPrecision: undefined, dataScale: 0, nullable: 'Y' },
+    db2: { columnName: 'KMAT', dataType: 'VARCHAR', dataLength: 12, nullable: 'Y' },
   })
   kmat?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     length: 10,
-    precision: 10,
-    scale: 3,
-    db2: { columnName: 'MNOZSTVI', dataType: 'DECIMAL', dataLength: 10, dataPrecision: undefined, dataScale: 3, nullable: 'Y' },
+    db2: { columnName: 'MNOZSTVI', dataType: 'DECIMAL', dataLength: 10, dataPrecision: 10, dataScale: 3, nullable: 'Y' },
   })
-  mnozstvi?: number;
+  mnozstvi?: string;
 
   @property({
     type: 'string',
-    length: 12,
-    db2: { columnName: 'MVM', dataType: 'CHARACTER', dataLength: 12, dataPrecision: undefined, dataScale: 0, nullable: 'Y' },
+    length: 3,
+    id: 1,
+    db2: { columnName: 'MVM', dataType: 'CHARACTER', dataLength: 3, nullable: 'N' },
   })
   mvm?: string;
 

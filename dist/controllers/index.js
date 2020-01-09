@@ -6,4 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./ping.controller"));
 __export(require("./material-standard.controller"));
 __export(require("./material-post-with-kafka-submit.controller"));
+__export(require("./ciselnik-mvn.controller"));
 //# sourceMappingURL=index.js.map

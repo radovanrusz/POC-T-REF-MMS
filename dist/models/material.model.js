@@ -17,23 +17,21 @@ let Material = class Material extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
         length: 10,
-        precision: 10,
-        scale: 3,
-        db2: { columnName: 'HMOTNOST', dataType: 'DECIMAL', dataLength: 10, dataPrecision: undefined, dataScale: 3, nullable: 'Y' },
+        db2: { columnName: 'HMOTNOST', dataType: 'DECIMAL', dataLength: 10, dataPrecision: 10, dataScale: 3, nullable: 'Y' },
     }),
     __metadata("design:type", String)
 ], Material.prototype, "hmotnost", void 0);
 __decorate([
     repository_1.property({
         type: 'number',
-        required: false,
+        required: true,
         length: 4,
         precision: 4,
         scale: 0,
         id: 1,
-        db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 4, dataPrecision: undefined, dataScale: 0, nullable: 'N' },
+        db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 4, dataPrecision: 4, dataScale: 0, nullable: 'N' },
     }),
     __metadata("design:type", Number)
 ], Material.prototype, "id", void 0);
@@ -41,25 +39,24 @@ __decorate([
     repository_1.property({
         type: 'string',
         length: 12,
-        db2: { columnName: 'KMAT', dataType: 'CHARACTER', dataLength: 12, dataPrecision: undefined, dataScale: 0, nullable: 'Y' },
+        db2: { columnName: 'KMAT', dataType: 'VARCHAR', dataLength: 12, nullable: 'Y' },
     }),
     __metadata("design:type", String)
 ], Material.prototype, "kmat", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
         length: 10,
-        precision: 10,
-        scale: 3,
-        db2: { columnName: 'MNOZSTVI', dataType: 'DECIMAL', dataLength: 10, dataPrecision: undefined, dataScale: 3, nullable: 'Y' },
+        db2: { columnName: 'MNOZSTVI', dataType: 'DECIMAL', dataLength: 10, dataPrecision: 10, dataScale: 3, nullable: 'Y' },
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Material.prototype, "mnozstvi", void 0);
 __decorate([
     repository_1.property({
         type: 'string',
-        length: 12,
-        db2: { columnName: 'MVM', dataType: 'CHARACTER', dataLength: 12, dataPrecision: undefined, dataScale: 0, nullable: 'Y' },
+        length: 3,
+        id: 1,
+        db2: { columnName: 'MVM', dataType: 'CHARACTER', dataLength: 3, nullable: 'N' },
     }),
     __metadata("design:type", String)
 ], Material.prototype, "mvm", void 0);

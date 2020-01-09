@@ -82,7 +82,9 @@ export class MaterialStandardController {
   async find(
     @param.query.object('filter', getFilterSchemaFor(Material)) filter?: Filter<Material>,
   ): Promise<Material[]> {
-    return this.materialRepository.find(filter);
+    const result1 = this.materialRepository.find(filter);
+    console.log(JSON.stringify(result1))
+    return result1
   }
 
   @patch('/materials', {

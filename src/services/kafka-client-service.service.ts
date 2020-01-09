@@ -39,25 +39,27 @@ export class KafkaClientServiceService {
 
     return new Promise(function (resolve, reject) {
       let mDate = new Date();
-      let mDateStr = mDate.toLocaleDateString('cs-CS');
-      const msg: Message = {
-        id: id,
-        kmat: kmat,
-        mvm1: mvm1,
-        mvm2: mvm2,
-        hmotnost: hmotnost,
-        mnozstvi: mnozstvi,
-        timestamp: new Date().toISOString()
-      }
-      const payload = [{
-        topic: kafkaTopic,
-        messages: JSON.stringify(msg)
-      }];
-      console.log(mDateStr + ': Going to use producer ..');
+      let mDateStr = mDate.toISOString();
       try {
+
+        const msg: Message = {
+          id: id,
+          kmat: kmat,
+          mvm1: mvm1,
+          mvm2: mvm2,
+          hmotnost: hmotnost,
+          mnozstvi: mnozstvi,
+          timestamp: new Date().toISOString()
+        }
+        const payload = [{
+          topic: kafkaTopic,
+          messages: JSON.stringify(msg)
+        }];
+        console.log(mDateStr + ': Going to use producer ..');
+
         // Kafka Producer Configuration
         mDate = new Date();
-        mDateStr = mDate.toLocaleDateString('cs-CS');
+        mDateStr = mDate.toISOString();
         console.log(mDateStr + ': Trying to connect to Kafka server: ' + kafkaHost + ':' + kafkaPort + ', topic: ' + kafkaTopic);
         //const Producer = kafka.Producer;
         const client = new KafkaClient({ kafkaHost: kafkaHost + ':' + kafkaPort });
@@ -65,11 +67,11 @@ export class KafkaClientServiceService {
 
         producer.on('ready', async function () {
           mDate = new Date();
-          mDateStr = mDate.toLocaleDateString('cs-CS');
+          mDateStr = mDate.toISOString();
           console.log(mDateStr + ': Kafka Producer is Ready to communicate with Kafka on: ' + kafkaHost + ':' + kafkaPort);
           producer.send(payload, function (err, data) {
             mDate = new Date();
-            mDateStr = mDate.toLocaleDateString('cs-CS');
+            mDateStr = mDate.toISOString();
             if (err) {
               console.error(mDateStr + ': Broker update failed: ' + err);
               reject(err);
@@ -82,7 +84,7 @@ export class KafkaClientServiceService {
 
         producer.on('error', function (err) {
           mDate = new Date();
-          mDateStr = mDate.toLocaleDateString('cs-CS');
+          mDateStr = mDate.toISOString();
           console.error(err);
           console.error(mDateStr + ': [kafka-producer -> ' + kafkaTopic + ']: connection errored');
           reject(err);

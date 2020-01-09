@@ -16,14 +16,14 @@ const repository_1 = require("@loopback/repository");
 const models_1 = require("../models");
 const datasources_1 = require("../datasources");
 const core_1 = require("@loopback/core");
-let MaterialRepository = class MaterialRepository extends repository_1.DefaultCrudRepository {
+let CismvmRepository = class CismvmRepository extends repository_1.DefaultCrudRepository {
     constructor(dataSource) {
-        super(models_1.Material, dataSource);
+        super(models_1.Cismvm, dataSource);
     }
 };
-MaterialRepository = __decorate([
+CismvmRepository = __decorate([
     __param(0, core_1.inject('datasources.db2')),
     __metadata("design:paramtypes", [datasources_1.Db2DataSource])
-], MaterialRepository);
-exports.MaterialRepository = MaterialRepository;
-//# sourceMappingURL=material.repository copy.js.map
+], CismvmRepository);
+exports.CismvmRepository = CismvmRepository;
+//# sourceMappingURL=cismvm.repository.js.map

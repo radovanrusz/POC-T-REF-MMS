@@ -3,7 +3,7 @@ export declare class Material extends Entity {
     hmotnost?: string;
     id: number;
     kmat?: string;
-    mnozstvi?: number;
+    mnozstvi?: string;
     mvm?: string;
     [prop: string]: any;
     constructor(data?: Partial<Material>);
