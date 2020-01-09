@@ -1,47 +1,28 @@
-FROM centos
+# Check out https://hub.docker.com/_/node to select a new base image
+FROM node:10-slim
 
-RUN yum install -y  epel-release
+# Set to a non-root built-in user `node`
+USER node
 
-#https://tech.amikelive.com/node-663/quick-tip-installing-nodejs-8-on-centos-7/
-#RUN yum install curl
-#RUN yum remove -y nodejs npm
-#RUN /usr/bin/curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-RUN /usr/bin/curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
-RUN yum install -y nodejs
+# Create app directory (with user `node`)
+RUN mkdir -p /home/node/app
 
-#RUN yum install -y   npm python2 node-gyp gcc make unixODBC
-RUN yum install -y python2 node-gyp gcc make unixODBC
+WORKDIR /home/node/app
 
-RUN mkdir -p /app
-WORKDIR /app
-COPY . /app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY --chown=node package*.json ./
 
-RUN npm i  && ln -s /app/node_modules/ /node_modules
+RUN npm install
 
-ENV PORT 80
-EXPOSE 80
+# Bundle app source code
+COPY --chown=node . .
 
-CMD ["node", "src/server/server.js"]
-#CMD exec /bin/sh -c "trap : TERM INT; (while true; do sleep 1000; done) & wait"
+RUN npm run build
 
+# Bind to all network interfaces so that it can be mapped to the host OS
+ENV HOST=0.0.0.0 PORT=3000
 
-#FROM node:8.9-alpine
-#RUN mkdir -p /app
-#WORKDIR /app
-##RUN npm install -g nodemon
-#RUN npm config set registry https://registry.npmjs.org
-#COPY package.json /app/package.json
-##RUN npm install \
-## && npm ls \
-## && npm cache clean --force \
-## && mv /app/node_modules /node_modules
-#RUN npm install 
-##RUN npm ls
-#RUN npm cache clean --force 
-#RUN mv /app/node_modules /node_modules
-#COPY . /app
-##RUN chmod 755 /app/result_live_chk.sh
-#ENV PORT 80
-#EXPOSE 80
-#CMD ["node", "server/server.js"]
-#CMD exec /bin/sh -c "trap : TERM INT; (while true; do sleep 1000; done) & wait"
+EXPOSE ${PORT}
+CMD [ "node", "." ]
