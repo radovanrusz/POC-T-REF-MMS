@@ -35,12 +35,11 @@ export class Material extends Entity {
   mnozstvi?: string;
 
   @property({
-    type: 'string',
-    length: 3,
-    id: 1,
-    db2: { columnName: 'MVM', dataType: 'CHARACTER', dataLength: 3, nullable: 'N' },
+    type: 'number',
+    length: 4,
+    db2: { columnName: 'MVM', dataType: 'INTEGER', nullable: 'N' },
   })
-  mvm?: string;
+  mvm?: number;
 
   // Define well-known properties here
 

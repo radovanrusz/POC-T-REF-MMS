@@ -1354,8 +1354,8 @@
         "signature": "3eac55e7417384cc96babbfd0502cd4ce45f2d3d683c1fa6dccd2dca3882b72d"
       },
       "./src/models/material.model.ts": {
-        "version": "f6358c8609274be1d4cc8f32ace70458b449fdc110df8a4abda94fd8620bd536",
-        "signature": "ac56f9e111013b649c7ff02b537a79e4292f9629b3c5bf918477f85f120a6d1f"
+        "version": "6a68ffb38bc3cde0d164579d3213bd527eac16d963d9080b11d683150d2ed050",
+        "signature": "5be0edbfe3a0724b6c6c23a7952e63db38a4f2b39adcef9b852b600d33cc0992"
       },
       "./src/models/index.ts": {
         "version": "8c18f2fcc149d80055a375fb7f432a9641bfe292e2e3bbeca3bbacf70b014c44",
@@ -6574,23 +6574,14 @@
       "./src/__tests__/acceptance/home-page.acceptance.ts",
       "./src/__tests__/acceptance/ping.controller.acceptance.ts",
       "./src/models/cismvm.model.ts",
-      "./src/models/index.ts",
       "./src/datasources/db2.datasource.config.json",
       "./src/datasources/db2.datasource.ts",
       "./src/datasources/index.ts",
-      "./src/repositories/material.with.tx.repository.ts",
-      "./src/repositories/cismvm.repository.ts",
-      "./src/repositories/material.repository.ts",
-      "./src/repositories/index.ts",
-      "./src/controllers/ciselnik-mvn.controller.ts",
       "./src/controllers/ping.controller.ts",
-      "./src/controllers/material-standard.controller.ts",
       "./src/services/scenario-simulator.service.ts",
       "./node_modules/kafka-node/types/index.d.ts",
       "./src/services/kafka-client-service.service.ts",
       "./src/services/index.ts",
-      "./src/controllers/material-post-with-kafka-submit.controller.ts",
-      "./src/controllers/index.ts",
       "./node_modules/@types/color-name/index.d.ts",
       "./node_modules/@types/debug/index.d.ts",
       "./node_modules/@types/eslint-visitor-keys/index.d.ts",
@@ -6600,7 +6591,16 @@
       "./node_modules/@types/mocha/index.d.ts",
       "./node_modules/@types/on-finished/index.d.ts",
       "./node_modules/@types/type-is/index.d.ts",
-      "./src/models/material.model.ts"
+      "./src/models/material.model.ts",
+      "./src/models/index.ts",
+      "./src/repositories/material.with.tx.repository.ts",
+      "./src/repositories/cismvm.repository.ts",
+      "./src/repositories/material.repository.ts",
+      "./src/repositories/index.ts",
+      "./src/controllers/ciselnik-mvn.controller.ts",
+      "./src/controllers/material-standard.controller.ts",
+      "./src/controllers/material-post-with-kafka-submit.controller.ts",
+      "./src/controllers/index.ts"
     ]
   },
   "version": "3.7.4"

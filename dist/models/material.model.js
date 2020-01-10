@@ -53,12 +53,11 @@ __decorate([
 ], Material.prototype, "mnozstvi", void 0);
 __decorate([
     repository_1.property({
-        type: 'string',
-        length: 3,
-        id: 1,
-        db2: { columnName: 'MVM', dataType: 'CHARACTER', dataLength: 3, nullable: 'N' },
+        type: 'number',
+        length: 4,
+        db2: { columnName: 'MVM', dataType: 'INTEGER', nullable: 'N' },
     }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Material.prototype, "mvm", void 0);
 Material = __decorate([
     repository_1.model({ settings: { idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' } } }),
