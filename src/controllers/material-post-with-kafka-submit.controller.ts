@@ -6,6 +6,8 @@ import {
 } from '@loopback/repository';
 import {
   post,
+  param,
+  get,
   getModelSchemaRef,
   requestBody,
 } from '@loopback/rest';
@@ -76,4 +78,27 @@ export class MaterialPostWithKafkaSubmitController {
 
   }
 
+
+  @get('/get-materials-by-mvm/{mvm}', {
+    responses: {
+      '200': {
+        description: 'Get materials in warehouse by raw SQL query',
+        content: {
+          'application/json': { schema: {} },
+        }
+      }
+    }
+  })
+  async runSql2(
+    @param.path.string('mvm') mvm: string,
+
+  ) {
+    console.log(`C: running raw SQL with incoming material: ${mvm}`)
+
+    //Business logika je externalizovana do sdilene sluzby pouzitelne ve vice controllerech
+    //const result1 = await this.materialRepository.dataSource.execute('select * from material')
+    const result1 = await this.materialRepository.dataSource.execute('SELECT material.id, material.kmat,material.hmotnost,material.mnozstvi,material.mvm, CISMVM.NAZEV FROM material, cismvm WHERE cismvm.mvm = MATERIAL.mvm and material.mvm = ? ORDER BY MATERIAL.kmat', [mvm])
+    return result1
+
+  }
 }

@@ -8,4 +8,5 @@ export declare class MaterialPostWithKafkaSubmitController {
     kafkaClientServices: KafkaClientServiceService;
     constructor(materialRepository: MaterialWithTxRepository, scenarioSimulator: ScenarioSimulatorService, kafkaClientServices: KafkaClientServiceService);
     create(material: Omit<Material, 'id'>): Promise<Material>;
+    runSql2(mvm: string): Promise<any>;
 }

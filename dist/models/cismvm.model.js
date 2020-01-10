@@ -17,14 +17,14 @@ let Cismvm = class Cismvm extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
         required: true,
         length: 3,
         id: 1,
-        db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 3, dataPrecision: undefined, dataScale: 0, nullable: 'N' },
+        db2: { columnName: 'MVM', dataType: 'VAR', dataLength: 3, nullable: 'N' },
     }),
-    __metadata("design:type", Number)
-], Cismvm.prototype, "id", void 0);
+    __metadata("design:type", String)
+], Cismvm.prototype, "mvm", void 0);
 __decorate([
     repository_1.property({
         type: 'string',

@@ -50,6 +50,13 @@ let MaterialPostWithKafkaSubmitController = class MaterialPostWithKafkaSubmitCon
         }
         return result1;
     }
+    async runSql2(mvm) {
+        console.log(`C: running raw SQL with incoming material: ${mvm}`);
+        //Business logika je externalizovana do sdilene sluzby pouzitelne ve vice controllerech
+        //const result1 = await this.materialRepository.dataSource.execute('select * from material')
+        const result1 = await this.materialRepository.dataSource.execute('SELECT material.id, material.kmat,material.hmotnost,material.mnozstvi,material.mvm, CISMVM.NAZEV FROM material, cismvm WHERE cismvm.mvm = MATERIAL.mvm and material.mvm = ? ORDER BY MATERIAL.kmat', [mvm]);
+        return result1;
+    }
 };
 __decorate([
     rest_1.post('/post-material-submit-kafka', {
@@ -74,6 +81,22 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MaterialPostWithKafkaSubmitController.prototype, "create", null);
+__decorate([
+    rest_1.get('/get-materials-by-mvm/{mvm}', {
+        responses: {
+            '200': {
+                description: 'Get materials in warehouse by raw SQL query',
+                content: {
+                    'application/json': { schema: {} },
+                }
+            }
+        }
+    }),
+    __param(0, rest_1.param.path.string('mvm')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], MaterialPostWithKafkaSubmitController.prototype, "runSql2", null);
 MaterialPostWithKafkaSubmitController = __decorate([
     __param(0, repository_1.repository(repositories_1.MaterialWithTxRepository)),
     __param(1, core_1.service(services_1.ScenarioSimulatorService)),

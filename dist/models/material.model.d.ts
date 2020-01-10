@@ -4,7 +4,7 @@ export declare class Material extends Entity {
     id: number;
     kmat?: string;
     mnozstvi?: string;
-    mvm?: number;
+    mvm?: string;
     [prop: string]: any;
     constructor(data?: Partial<Material>);
 }

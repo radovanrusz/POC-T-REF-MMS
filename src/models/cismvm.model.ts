@@ -3,14 +3,14 @@ import { Entity, model, property } from '@loopback/repository';
 @model({ settings: { idInjection: false, db2: { schema: 'DB2INST1', table: 'CISMVM' } } })
 export class Cismvm extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
     length: 3,
 
     id: 1,
-    db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 3, dataPrecision: undefined, dataScale: 0, nullable: 'N' },
+    db2: { columnName: 'MVM', dataType: 'VAR', dataLength: 3, nullable: 'N' },
   })
-  id: number;
+  mvm: string;
 
   @property({
     type: 'string',
