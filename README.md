@@ -85,7 +85,7 @@ Pro vytvoreni transakcni funkcionality analogicke s V3 (v ramci existujici db tr
 * Vytvorit novou repository s podporou transakci:
 	* Kopirovat /src/repositories/material.repository.ts do **material.with.tx.repository.ts**
 	* Prislusne upravit soubory **material.with.tx.repository.ts** a **index.ts** (klicove: zmenit DefaultCrudRepository -> **DefaultTransactionalRepository**)
-* Vytvorit 2 sluzby:
+* Vytvorit 2x sluzbu:
 	* Pomoci prikazu **lb4 service** vytvorit obe sluzby typu **Local service class bound to application context**
 	* Zkopirovat kod z prislusneho souboru z LB4 vetve
 * Vytvorit prazdny controller **lb4 controller** (MaterialPostWithKafkaSubmit -> Empty Controller)
@@ -94,7 +94,7 @@ Pro vytvoreni transakcni funkcionality analogicke s V3 (v ramci existujici db tr
 	* GET /get-materials-by-mvm​/{mvm}
 	* POST /post-material-submit-kafka
 
-# Priklady a dalsi zdroje
+## Priklady a dalsi zdroje
 Jednoduchy query string pro Explorer pro get /materials:
 	{
   "fields": {
