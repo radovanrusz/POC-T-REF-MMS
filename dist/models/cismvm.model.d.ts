@@ -1,6 +1,6 @@
 import { Entity } from '@loopback/repository';
 export declare class Cismvm extends Entity {
-    mvm: string;
+    id: number;
     nazev?: string;
     [prop: string]: any;
     constructor(data?: Partial<Cismvm>);
