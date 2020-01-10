@@ -6,10 +6,10 @@
 
 ## Omezeni
 * LB4 neumi generovat vice repositories na stejnym datasource -> Kafka repository s transakcni podporou je vytvorena rucne
+* Projekt neni pripraven pro beh v OC kontejneru
 
 ## Zmeny proti projektu LB3
 * Model databaze (tabulka MATERIAL) se vytvori pomoci prikazu **lb4 discover**. Nevytvari se rucne.
-
 
 ## Kroky pro aktivaci hot reload pri vyvoji:
 * npm install nodemon --save-dev
@@ -58,26 +58,28 @@ Nove bude reseni demonstrovat i relacni vazbu mezi vice tabulkami. (pridat tabul
 
 * Vytvorit MODEL pro MATERIAL pomoci prikazu lb4 discover
 	* Vybrat model **MATERIAL**
-	* Bohuzel automaticke generovani vykazuje drobne chyby, ktere je nutno rucne opravit v souboru **/src/models/material.model.ts**. 	* Bohuzel automaticke generovani vykazuje drobne chyby, ktere je nutno rucne opravit v souboru **/src/models/cismvm.model.ts**. Jedna se opravu spatne prirazeneho atributu **precision** u datovych typu DECIMAL, a ne-povinneho atributu **id** (required: true -> required: false). **POZOR: decimal je standardne prevaden na string v js/json formatu**
 * Vytvorit repository (MaterialRepository) pro danny model pomoci prikazu **lb4 repository**
 * Vyvorit standardni controller **lb4 controller** (MaterialStandard -> REST Controller with CRUD functions -> Material -> MaterialRepository -> id -> number -> y -> /materials) pro danny model umoznujici zakladni CRUD operace nad tabulkou MATERIAL
 * Otestovat novy controller pomoci web exploreru
+
+### Omezeni&Varovani
+Bohuzel automaticke generovani vykazuje drobne chyby, ktere je nutno rucne opravit v souboru **/src/models/material.model.ts**. Jedna se opravu spatne prirazeneho atributu **precision** u datovych typu DECIMAL, a ne-povinneho atributu **id** (required: true -> required: false). **POZOR: decimal je standardne prevaden na string v js/json formatu**
 
 # Rucni vytvoreni "controlleru" pro integraci s Kafka a vytvoreni join relace material <-> cismvm
 Principy:
 * Logika souvisejici s Kafka bude umistena do dvou komponent typu [service](https://loopback.io/doc/en/lb4/Services.html)
 * Na priklade join query material, cismvm bude demonstrovana moznost pristupu k jazyka SQL pomoci standardnich funci kompoenty typu repository
 
-Zdrojovy kod je k dispozici:
+### Zdrojovy kod je k dispozici:
 * Repository s transakcni podporou: **src/repositories/material.with.tx.repository.ts**
 * Sluzby souviceji s kafkou: **src/services/...**
 * Custom controller: **src/controllers/material.with.tx.repository.ts**
 
-Omezeni:
+### Omezeni:
 * Je implementovan pouze jednoduchy insert noveho materialu a jeho odeslani do Kafky topic v ramci jedne transakce
 * Z obchodni logiky v3 je pouze k dispozi modelova implementace vyberu scenare ve sluzbe **src/services/scenario-simulator.service.ts**
 
-Zjednoduseny postup
+### Zjednoduseny postup
 Pro vytvoreni transakcni funkcionality analogicke s V3 (v ramci existujici db transacke ulozit data do kafky a nasledne realizovat rizeny commit/rollback) jsou nutne tyto kroky:
 * Pridat npm moduly pro Kafku: npm install kafka-node
 * Vytvorit novou repository s podporou transakci:
@@ -94,7 +96,6 @@ Pro vytvoreni transakcni funkcionality analogicke s V3 (v ramci existujici db tr
 
 # Priklady a dalsi zdroje
 Jednoduchy query string pro Explorer pro get /materials:
-
 	{
   "fields": {
     "hmotnost": true,
