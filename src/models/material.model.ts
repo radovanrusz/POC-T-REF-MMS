@@ -5,7 +5,9 @@ export class Material extends Entity {
   @property({
     type: 'string',
     length: 10,
-    db2: { columnName: 'HMOTNOST', dataType: 'DECIMAL', dataLength: 10, dataPrecision: 10, dataScale: 3, nullable: 'Y' },
+
+    scale: 3,
+    db2: { columnName: 'HMOTNOST', dataType: 'DECIMAL', dataLength: 10, dataPrecision: undefined, dataScale: 3, nullable: 'Y' },
   })
   hmotnost?: string;
 

@@ -1354,12 +1354,16 @@
         "signature": "3eac55e7417384cc96babbfd0502cd4ce45f2d3d683c1fa6dccd2dca3882b72d"
       },
       "./src/models/material.model.ts": {
-        "version": "f721e6afd5881ae8ee9ae08b1e6c4f03370f81692abbb9a1a0399fd6d3f69413",
+        "version": "8dd105b148427f192287485ab30a1acef11dfa02ed70ce8341cdbca203b76fba",
         "signature": "ac56f9e111013b649c7ff02b537a79e4292f9629b3c5bf918477f85f120a6d1f"
       },
+      "./src/models/mat2.model.ts": {
+        "version": "522c27e953878e6a657d1c7cd6ee0ea187617b16a0f134f8dd98df70f0c62d27",
+        "signature": "d0da2d2aa007a769c70e186a941e3db724a391c3605da90ef577894c960bf58d"
+      },
       "./src/models/index.ts": {
-        "version": "8c18f2fcc149d80055a375fb7f432a9641bfe292e2e3bbeca3bbacf70b014c44",
-        "signature": "b1330393ed2c044c84fae504c89ea1a6a17d29a0fc7948cf9ff1eba9547f35ab"
+        "version": "773d465f1130bcfd87f126378e4007b6c9e81c997836a55fbc89d227d3acd261",
+        "signature": "0a66f3d306a41b44a83b98c5eac57ff6de33ac7fc13eb2fee547e7c4c3e72f2b"
       },
       "./src/datasources/db2.datasource.config.json": {
         "version": "93fcce8f9974a65ed8c76e12cf0f9998e644a47997cf225f92a75e6651af4b7d",
@@ -3741,9 +3745,15 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/models/mat2.model.ts": [
+        "./node_modules/@loopback/repository/index.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./src/models/index.ts": [
         "./src/models/cismvm.model.ts",
         "./src/models/material.model.ts",
+        "./src/models/mat2.model.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -6124,9 +6134,13 @@
       "./src/models/material.model.ts": [
         "./node_modules/@loopback/repository/index.d.ts"
       ],
+      "./src/models/mat2.model.ts": [
+        "./node_modules/@loopback/repository/index.d.ts"
+      ],
       "./src/models/index.ts": [
         "./src/models/cismvm.model.ts",
-        "./src/models/material.model.ts"
+        "./src/models/material.model.ts",
+        "./src/models/mat2.model.ts"
       ],
       "./src/datasources/db2.datasource.ts": [
         "./node_modules/@loopback/core/index.d.ts",
@@ -6573,7 +6587,9 @@
       "./src/__tests__/acceptance/test-helper.ts",
       "./src/__tests__/acceptance/home-page.acceptance.ts",
       "./src/__tests__/acceptance/ping.controller.acceptance.ts",
+      "./src/models/cismvm.model.ts",
       "./src/models/material.model.ts",
+      "./src/models/mat2.model.ts",
       "./src/models/index.ts",
       "./src/datasources/db2.datasource.config.json",
       "./src/datasources/db2.datasource.ts",
@@ -6588,9 +6604,6 @@
       "./src/services/scenario-simulator.service.ts",
       "./node_modules/kafka-node/types/index.d.ts",
       "./src/services/kafka-client-service.service.ts",
-      "./src/services/index.ts",
-      "./src/controllers/material-post-with-kafka-submit.controller.ts",
-      "./src/controllers/index.ts",
       "./node_modules/@types/color-name/index.d.ts",
       "./node_modules/@types/debug/index.d.ts",
       "./node_modules/@types/eslint-visitor-keys/index.d.ts",
@@ -6600,7 +6613,9 @@
       "./node_modules/@types/mocha/index.d.ts",
       "./node_modules/@types/on-finished/index.d.ts",
       "./node_modules/@types/type-is/index.d.ts",
-      "./src/models/cismvm.model.ts"
+      "./src/services/index.ts",
+      "./src/controllers/material-post-with-kafka-submit.controller.ts",
+      "./src/controllers/index.ts"
     ]
   },
   "version": "3.7.4"
