@@ -108,3 +108,5 @@ Jednoduchy query string pro Explorer pro get /materials:
   "limit": 100,
   "skip": 0
 	}
+
+
