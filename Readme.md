@@ -4,10 +4,7 @@
 * Globálně instalovaná verze LB3 (npm install -g loopback-cli)
 * Běžící kontejner DB2 konfigurovaný podle předchozích standardních instrukcí
 
-## Omezení
-* Projekt není připraven pro běh v OC kontejneru
-
-# Postup
+## Postup
 * Vytvoření aplikačního boilerplate: lb app
 	* Potvrdit hodnoty:
         * (name)
@@ -23,8 +20,17 @@
 * Discovery existujicí databáze DB2 a uložení definice modelů
     * Užití dataSource.discoverSchema() API a vytvoření příslušných souborů pomocí one-time skriptu
     * Doc: https://loopback.io/doc/en/lb3/Discovering-models-from-relational-databases.html
-    * Příklad: discover-models-start.js (node discover-models-start.js)
+    * Funkční příklad pro novou aplikaci: discover-models.js (node discover-models.js)
 
 * Ověření funkcionality a spojení k databázi
 	* node .
     * http://localhost:3000
+
+# Ostatní
+
+## Vytvoření DB schématu dle LB modelu = auto-migration
+* Varianty
+    * Auto-migrate - vytvoření tabulek dle modelů (drop existujících tabulek => ztráta dat)
+    * Auto-update - změna tabulek dle modelů
+* Doc: https://loopback.io/doc/en/lb3/Creating-a-database-schema-from-models.html
+* Příklad: automigrate.js (nutno přemístit do src/server/boot pro spuštění při startu aplikace)
