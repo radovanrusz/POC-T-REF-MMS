@@ -1,4 +1,4 @@
-FROM centos
+FROM docker.io/library/centos:7
 
 RUN yum install -y  epel-release
 
