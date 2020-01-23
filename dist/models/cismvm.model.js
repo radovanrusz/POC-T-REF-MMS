@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
+const material_model_1 = require("./material.model");
 let Cismvm = class Cismvm extends repository_1.Entity {
     constructor(data) {
         super(data);
@@ -33,6 +34,10 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Cismvm.prototype, "nazev", void 0);
+__decorate([
+    repository_1.hasMany(() => material_model_1.Material, { keyTo: 'MVM' }),
+    __metadata("design:type", Array)
+], Cismvm.prototype, "materials", void 0);
 Cismvm = __decorate([
     repository_1.model({ settings: { idInjection: false, db2: { schema: 'DB2INST1', table: 'CISMVM' } } }),
     __metadata("design:paramtypes", [Object])

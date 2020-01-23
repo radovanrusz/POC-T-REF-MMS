@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
+const cismvm_model_1 = require("./cismvm.model");
 let Material = class Material extends repository_1.Entity {
     constructor(data) {
         super(data);
@@ -53,24 +54,20 @@ __decorate([
     __metadata("design:type", String)
 ], Material.prototype, "mnozstvi", void 0);
 __decorate([
-    repository_1.property({
-        type: 'STRING',
-        length: 3,
-        db2: { columnName: 'MVM', dataType: 'CHAR', dataLength: 3, nullable: 'N' },
-    }),
+    repository_1.belongsTo(() => cismvm_model_1.Cismvm, { keyFrom: 'MVM' }, { keyTo: 'MVM' }),
     __metadata("design:type", String)
-], Material.prototype, "mvm", void 0);
+], Material.prototype, "MVM", void 0);
 Material = __decorate([
     repository_1.model({
         settings: {
             idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' }
         },
         foreignKeys: {
-            fk_csmvm: {
-                name: 'fk_csmvm',
-                entity: 'csmvm',
-                entityKey: 'mvm',
-                foreignKey: 'mvm',
+            cismvmId: {
+                name: 'cismvmId',
+                entity: 'cismvm',
+                entityKey: 'MVM',
+                foreignKey: 'MVM',
             }
         }
     }),

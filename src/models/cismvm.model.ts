@@ -1,4 +1,5 @@
-import { Entity, model, property } from '@loopback/repository';
+import { Entity, model, property, hasMany } from '@loopback/repository';
+import { Material } from './material.model';
 
 @model({ settings: { idInjection: false, db2: { schema: 'DB2INST1', table: 'CISMVM' } } })
 export class Cismvm extends Entity {
@@ -19,6 +20,8 @@ export class Cismvm extends Entity {
   })
   nazev?: string;
 
+  @hasMany(() => Material, { keyTo: 'MVM' })
+  materials: Material[];
   // Define well-known properties here
 
   // Indexer property to allow additional data

@@ -17,13 +17,16 @@ const models_1 = require("../models");
 const datasources_1 = require("../datasources");
 const core_1 = require("@loopback/core");
 let MaterialRepository = class MaterialRepository extends repository_1.DefaultCrudRepository {
-    constructor(dataSource) {
+    constructor(dataSource, cismvmRepositoryGetter) {
         super(models_1.Material, dataSource);
+        this.cismvmRepositoryGetter = cismvmRepositoryGetter;
+        this.cismvm = this.createBelongsToAccessorFor('MVM', cismvmRepositoryGetter);
+        this.registerInclusionResolver('cismvm', this.cismvm.inclusionResolver);
     }
 };
 MaterialRepository = __decorate([
-    __param(0, core_1.inject('datasources.db2')),
-    __metadata("design:paramtypes", [datasources_1.Db2DataSource])
+    __param(0, core_1.inject('datasources.db2')), __param(1, repository_1.repository.getter('CismvmRepository')),
+    __metadata("design:paramtypes", [datasources_1.Db2DataSource, Function])
 ], MaterialRepository);
 exports.MaterialRepository = MaterialRepository;
 //# sourceMappingURL=material.repository.js.map

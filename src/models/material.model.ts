@@ -1,4 +1,5 @@
-import { Entity, model, property } from '@loopback/repository';
+import { Entity, model, property, belongsTo } from '@loopback/repository';
+import { Cismvm } from './cismvm.model';
 
 @model({
   settings:
@@ -6,11 +7,11 @@ import { Entity, model, property } from '@loopback/repository';
     idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' }
   },
   foreignKeys: {
-    fk_csmvm: {
-      name: 'fk_csmvm',
-      entity: 'csmvm',
-      entityKey: 'mvm',
-      foreignKey: 'mvm',
+    cismvmId: {
+      name: 'cismvmId',
+      entity: 'cismvm',
+      entityKey: 'MVM',
+      foreignKey: 'MVM',
     }
   }
 }
@@ -49,13 +50,20 @@ export class Material extends Entity {
     db2: { columnName: 'MNOZSTVI', dataType: 'DECIMAL', dataLength: 10, dataPrecision: 10, dataScale: 3, nullable: 'Y' },
   })
   mnozstvi?: string;
+  /*
+    @property({
+      type: 'string',
+      length: 4,
+      db2: { columnName: 'MVM', dataType: 'VARCHAR', dataLength: 4, nullable: 'Y' },
+    })
+    mvm?: string;
+  */
 
-  @property({
-    type: 'STRING',
-    length: 3,
-    db2: { columnName: 'MVM', dataType: 'CHAR', dataLength: 3, nullable: 'N' },
-  })
-  mvm?: string;
+  @belongsTo(() => Cismvm, { keyFrom: 'MVM' }, { keyTo: 'MVM' })
+  MVM: string;
+
+
+
 
   // Define well-known properties here
 

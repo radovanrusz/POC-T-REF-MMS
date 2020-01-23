@@ -7,4 +7,6 @@ __export(require("./ping.controller"));
 __export(require("./material-standard.controller"));
 __export(require("./material-post-with-kafka-submit.controller"));
 __export(require("./ciselnik-mvn.controller"));
+__export(require("./cismvm-material.controller"));
+__export(require("./material-cismvm.controller"));
 //# sourceMappingURL=index.js.map
