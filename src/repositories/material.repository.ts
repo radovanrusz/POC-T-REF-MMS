@@ -6,17 +6,17 @@ import { CismvmRepository } from './cismvm.repository';
 
 export class MaterialRepository extends DefaultCrudRepository<
   Material,
-  typeof Material.prototype.mvm,
+  typeof String,
   MaterialRelations
   > {
 
-  public readonly cismvm: BelongsToAccessor<Cismvm, typeof Material.prototype.mvm>;
+  public readonly cismvm: BelongsToAccessor<Cismvm, typeof String>;
 
   constructor(
     @inject('datasources.db2') dataSource: Db2DataSource, @repository.getter('CismvmRepository') protected cismvmRepositoryGetter: Getter<CismvmRepository>,
   ) {
     super(Material, dataSource);
     this.cismvm = this.createBelongsToAccessorFor('MVM', cismvmRepositoryGetter);
-    this.registerInclusionResolver('cismvm', this.cismvm.inclusionResolver);
+    this.registerInclusionResolver('MVM', this.cismvm.inclusionResolver);
   }
 }

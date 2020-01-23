@@ -21,7 +21,7 @@ let MaterialRepository = class MaterialRepository extends repository_1.DefaultCr
         super(models_1.Material, dataSource);
         this.cismvmRepositoryGetter = cismvmRepositoryGetter;
         this.cismvm = this.createBelongsToAccessorFor('MVM', cismvmRepositoryGetter);
-        this.registerInclusionResolver('cismvm', this.cismvm.inclusionResolver);
+        this.registerInclusionResolver('MVM', this.cismvm.inclusionResolver);
     }
 };
 MaterialRepository = __decorate([

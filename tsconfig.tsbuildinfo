@@ -1350,7 +1350,7 @@
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "./src/models/material.model.ts": {
-        "version": "37eb14543672a53b38b0560239c186682cda7ca01ffb061ae3cfb93f061917cf",
+        "version": "6f1c65afeb0079681f27bb6f8c47dbb9d2637e43366af7ad7e673cf13b5886a8",
         "signature": "a991074571e63ae7d5cadd3b6ad14346b18e89044b9ee3baf730cb7c67405132"
       },
       "./src/models/cismvm.model.ts": {
@@ -1382,8 +1382,8 @@
         "signature": "5eb553539d78c6da43892b33d5295f103554b697ecd0a0d74800708c19b36015"
       },
       "./src/repositories/material.repository.ts": {
-        "version": "80e43a7c41c7979333c489f23c2072aa8ecbe9a9763c810074062587653b34ee",
-        "signature": "46bd07226bd45933e92d992bbcf66f0e08abf3e311f4d2030042357b5d005474"
+        "version": "f93b27cd2ef4a0215a80449e869f3ec6d6011c57d8417982c0b54d33641b3f8d",
+        "signature": "0cae3da0a44304c3d25ad5af75aa24ee0bf5794482f7d2a5c5746383da876d90"
       },
       "./src/repositories/cismvm.repository.ts": {
         "version": "9485a48eafe77a1338c3f6724dff29474548205fe1a5f05b7bc0ad4a5d93e8e9",
@@ -6646,13 +6646,61 @@
       "./src/controllers/ciselnik-mvn.controller.ts",
       "./src/controllers/cismvm-material.controller.ts",
       "./src/controllers/ping.controller.ts",
-      "./src/controllers/material-standard.controller.ts",
+      [
+        "./src/controllers/material-standard.controller.ts",
+        [
+          {
+            "file": "./src/controllers/material-standard.controller.ts",
+            "start": 3117,
+            "length": 2,
+            "code": 2345,
+            "category": 1,
+            "messageText": "Argument of type 'number' is not assignable to parameter of type 'StringConstructor'."
+          },
+          {
+            "file": "./src/controllers/material-standard.controller.ts",
+            "start": 3575,
+            "length": 2,
+            "code": 2345,
+            "category": 1,
+            "messageText": "Argument of type 'number' is not assignable to parameter of type 'StringConstructor'."
+          },
+          {
+            "file": "./src/controllers/material-standard.controller.ts",
+            "start": 3889,
+            "length": 2,
+            "code": 2345,
+            "category": 1,
+            "messageText": "Argument of type 'number' is not assignable to parameter of type 'StringConstructor'."
+          },
+          {
+            "file": "./src/controllers/material-standard.controller.ts",
+            "start": 4156,
+            "length": 2,
+            "code": 2345,
+            "category": 1,
+            "messageText": "Argument of type 'number' is not assignable to parameter of type 'StringConstructor'."
+          }
+        ]
+      ],
       "./src/services/scenario-simulator.service.ts",
       "./node_modules/kafka-node/types/index.d.ts",
       "./src/services/kafka-client-service.service.ts",
       "./src/services/index.ts",
       "./src/controllers/material-post-with-kafka-submit.controller.ts",
-      "./src/controllers/material-cismvm.controller.ts",
+      [
+        "./src/controllers/material-cismvm.controller.ts",
+        [
+          {
+            "file": "./src/controllers/material-cismvm.controller.ts",
+            "start": 814,
+            "length": 2,
+            "code": 2345,
+            "category": 1,
+            "messageText": "Argument of type 'number' is not assignable to parameter of type 'StringConstructor'."
+          }
+        ]
+      ],
       "./src/controllers/index.ts",
       "./node_modules/@types/color-name/index.d.ts",
       "./node_modules/@types/debug/index.d.ts",

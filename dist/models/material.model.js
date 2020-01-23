@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:type", String)
 ], Material.prototype, "mnozstvi", void 0);
 __decorate([
-    repository_1.belongsTo(() => cismvm_model_1.Cismvm, { keyFrom: 'MVM' }, { keyTo: 'MVM' }),
+    repository_1.belongsTo(() => cismvm_model_1.Cismvm, { keyFrom: 'MVM', keyTo: 'MVM' }),
     __metadata("design:type", String)
 ], Material.prototype, "MVM", void 0);
 Material = __decorate([

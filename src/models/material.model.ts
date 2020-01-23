@@ -59,7 +59,7 @@ export class Material extends Entity {
     mvm?: string;
   */
 
-  @belongsTo(() => Cismvm, { keyFrom: 'MVM' }, { keyTo: 'MVM' })
+  @belongsTo(() => Cismvm, { keyFrom: 'MVM', keyTo: 'MVM' })
   MVM: string;
 
 
