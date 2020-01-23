@@ -6,9 +6,8 @@ export class Cismvm extends Entity {
     type: 'string',
     required: true,
     length: 3,
-
-    id: 1,
-    db2: { columnName: 'MVM', dataType: 'VAR', dataLength: 3, nullable: 'N' },
+    id: true,
+    db2: { columnName: 'MVM', dataType: 'VARCHAR', dataLength: 3, nullable: 'N' },
   })
   mvm: string;
 

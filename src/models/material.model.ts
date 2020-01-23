@@ -1,6 +1,20 @@
 import { Entity, model, property } from '@loopback/repository';
 
-@model({ settings: { idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' } } })
+@model({
+  settings:
+  {
+    idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' }
+  },
+  foreignKeys: {
+    fk_csmvm: {
+      name: 'fk_csmvm',
+      entity: 'csmvm',
+      entityKey: 'mvm',
+      foreignKey: 'mvm',
+    }
+  }
+}
+)
 export class Material extends Entity {
   @property({
     type: 'string',
@@ -17,7 +31,7 @@ export class Material extends Entity {
     length: 4,
     precision: 4,
     scale: 0,
-    id: 1,
+    id: true,
     db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 4, dataPrecision: 4, dataScale: 0, nullable: 'N' },
   })
   id: number;

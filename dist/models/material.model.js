@@ -31,7 +31,7 @@ __decorate([
         length: 4,
         precision: 4,
         scale: 0,
-        id: 1,
+        id: true,
         db2: { columnName: 'ID', dataType: 'INTEGER', dataLength: 4, dataPrecision: 4, dataScale: 0, nullable: 'N' },
     }),
     __metadata("design:type", Number)
@@ -61,7 +61,19 @@ __decorate([
     __metadata("design:type", String)
 ], Material.prototype, "mvm", void 0);
 Material = __decorate([
-    repository_1.model({ settings: { idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' } } }),
+    repository_1.model({
+        settings: {
+            idInjection: false, db2: { schema: 'DB2INST1', table: 'MATERIAL' }
+        },
+        foreignKeys: {
+            fk_csmvm: {
+                name: 'fk_csmvm',
+                entity: 'csmvm',
+                entityKey: 'mvm',
+                foreignKey: 'mvm',
+            }
+        }
+    }),
     __metadata("design:paramtypes", [Object])
 ], Material);
 exports.Material = Material;

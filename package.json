@@ -31,7 +31,7 @@
     "prestart": "npm run build",
     "start": "node -r source-map-support/register .",
     "prepublishOnly": "npm run test",
-    "localDev": "nodemon ."
+    "localDev": "DEBUG=loopback:connector:* nodemon ."
   },
   "repository": {
     "type": "git"
