@@ -1,0 +1,11 @@
+{
+  "name": "pg",
+  "connector": "postgresql",
+  "url": "postgres://user:pass@6hostname:32635/db",
+  "host": "xxx",
+  "port": 32635,
+  "user": "xxx",
+  "password": "xxx",
+  "database": "postgres",
+  "ssl": true
+}

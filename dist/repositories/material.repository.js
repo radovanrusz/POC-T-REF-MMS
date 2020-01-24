@@ -17,15 +17,26 @@ const models_1 = require("../models");
 const datasources_1 = require("../datasources");
 const core_1 = require("@loopback/core");
 let MaterialRepository = class MaterialRepository extends repository_1.DefaultCrudRepository {
-    constructor(dataSource, cismvmRepositoryGetter) {
+    // DB2
+    // public readonly cismvm: BelongsToAccessor<Cismvm, typeof String>;
+    /* nechodi
+    constr uctor(
+      @inject('datasources.pg') dataSource: PgDataSource, @repository.getter('CismvmRepository2') protected cismvmRepositoryGetter: Getter<Cismvm2Repository>,
+    ) {
+      super(Material, dataSource);
+      this.cismvm = this.createBelongsToAccessorFor('MVM', cismvmRepositoryGetter);
+      this.registerInclusionResolver('MVM', this.cismvm.inclusionResolver);
+    }
+  */
+    constructor(dataSource, cismvm2RepositoryGetter) {
         super(models_1.Material, dataSource);
-        this.cismvmRepositoryGetter = cismvmRepositoryGetter;
-        this.cismvm = this.createBelongsToAccessorFor('MVM', cismvmRepositoryGetter);
-        this.registerInclusionResolver('MVM', this.cismvm.inclusionResolver);
+        this.cismvm2RepositoryGetter = cismvm2RepositoryGetter;
+        this.cismvm2 = this.createBelongsToAccessorFor('MVM', cismvm2RepositoryGetter);
+        this.registerInclusionResolver('MVM', this.cismvm2.inclusionResolver);
     }
 };
 MaterialRepository = __decorate([
-    __param(0, core_1.inject('datasources.db2')), __param(1, repository_1.repository.getter('CismvmRepository')),
+    __param(0, core_1.inject('datasources.db2')), __param(1, repository_1.repository.getter('Cismvm2Repository')),
     __metadata("design:paramtypes", [datasources_1.Db2DataSource, Function])
 ], MaterialRepository);
 exports.MaterialRepository = MaterialRepository;

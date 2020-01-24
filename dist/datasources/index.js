@@ -4,4 +4,5 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./db2.datasource"));
+__export(require("./pg.ibm.datasource"));
 //# sourceMappingURL=index.js.map

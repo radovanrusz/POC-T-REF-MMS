@@ -10,7 +10,7 @@ import {
   Material,
   Cismvm,
 } from '../models';
-import {MaterialRepository} from '../repositories';
+import { MaterialRepository } from '../repositories';
 
 export class MaterialCismvmController {
   constructor(
@@ -24,14 +24,14 @@ export class MaterialCismvmController {
         description: 'Cismvm belonging to Material',
         content: {
           'application/json': {
-            schema: {type: 'array', items: getModelSchemaRef(Cismvm)},
+            schema: { type: 'array', items: getModelSchemaRef(Cismvm) },
           },
         },
       },
     },
   })
   async getCismvm(
-    @param.path.number('id') id: typeof Material.prototype.id,
+    @param.path.string('id') id: typeof String,
   ): Promise<Cismvm> {
     return this.materialRepository.cismvm(id);
   }

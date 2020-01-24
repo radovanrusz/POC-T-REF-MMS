@@ -4,3 +4,6 @@ export * from './material-post-with-kafka-submit.controller';
 export * from './ciselnik-mvn.controller';
 export * from './cismvm-material.controller';
 export * from './material-cismvm.controller';
+export * from './pgcismvm2.controller';
+export * from './material-2-cismvm2.controller';
+export * from './material-2-standard-controller.controller';

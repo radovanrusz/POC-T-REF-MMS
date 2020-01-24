@@ -27,9 +27,11 @@ let MaterialStandardController = class MaterialStandardController {
         return this.materialRepository.count(where);
     }
     async find(filter) {
+        const result0 = this.materialRepository.find({ include: [{ relation: 'MVM' }] });
+        console.log(JSON.stringify(result0));
         const result1 = this.materialRepository.find(filter);
         console.log(JSON.stringify(result1));
-        return result1;
+        return result0;
     }
     async updateAll(material, where) {
         return this.materialRepository.updateAll(material, where);
