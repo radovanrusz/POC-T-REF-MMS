@@ -51,7 +51,7 @@ export class Material2 extends Entity {
   })
   mvm: string;
 
-  @belongsTo(() => Cismvm2)
+  @belongsTo(() => Cismvm2, { keyFrom: 'MVM' }, { keyTo: 'MVM' })
   MVM: string;
   // Define well-known properties here
 

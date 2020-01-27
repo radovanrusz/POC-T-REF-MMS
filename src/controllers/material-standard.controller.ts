@@ -20,7 +20,7 @@ import {
 import { Material } from '../models';
 import { MaterialRepository } from '../repositories';
 
-export class MaterialStandardController {
+export class MaterialPOSTGRESCiselnikController {
   constructor(
     @repository(MaterialRepository)
     public materialRepository: MaterialRepository,

@@ -10,8 +10,8 @@ import { inject } from '@loopback/core';
 
 export class Cismvm2Repository extends DefaultCrudRepository<
   Cismvm2,
-  //TZ typeof Cismvm2.prototype.mvm,
-  typeof String,
+  typeof Cismvm2.prototype.mvm,
+
   Cismvm2Relations
   > {
   constructor(

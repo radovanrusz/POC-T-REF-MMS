@@ -18,4 +18,4 @@ coverage
 node_modules
 npm-debug.log
 dist
-src/datasources/pg.ibm.datasource.config.json
+src/datasources/pg.datasource.config.NOT.COMMIT.json

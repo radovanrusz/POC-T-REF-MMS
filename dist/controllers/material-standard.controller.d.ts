@@ -1,7 +1,7 @@
 import { Count, Filter, Where } from '@loopback/repository';
 import { Material } from '../models';
 import { MaterialRepository } from '../repositories';
-export declare class MaterialStandardController {
+export declare class MaterialPOSTGRESCiselnikController {
     materialRepository: MaterialRepository;
     constructor(materialRepository: MaterialRepository);
     create(material: Omit<Material, 'id'>): Promise<Material>;

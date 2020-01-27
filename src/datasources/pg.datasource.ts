@@ -4,8 +4,9 @@ import {
   LifeCycleObserver,
   ValueOrPromise,
 } from '@loopback/core';
-import {juggler} from '@loopback/repository';
+import { juggler } from '@loopback/repository';
 import config from './pg.datasource.config.json';
+
 
 @lifeCycleObserver('datasource')
 export class PgDataSource extends juggler.DataSource
@@ -13,7 +14,7 @@ export class PgDataSource extends juggler.DataSource
   static dataSourceName = 'pg';
 
   constructor(
-    @inject('datasources.config.pg', {optional: true})
+    @inject('datasources.config.pg', { optional: true })
     dsConfig: object = config,
   ) {
     super(dsConfig);

@@ -1,7 +1,7 @@
-import {Entity, model, property} from '@loopback/repository';
-
+import { Entity, model, property, hasMany } from '@loopback/repository';
+import { Material } from './material.model';
 @model({
-  settings: {idInjection: false, postgresql: {schema: 'public', table: 'cismvm2'}}
+  settings: { idInjection: false, postgresql: { schema: 'public', table: 'cismvm2' } }
 })
 export class Cismvm2 extends Entity {
   @property({
@@ -9,7 +9,7 @@ export class Cismvm2 extends Entity {
     required: true,
     length: 3,
     id: 1,
-    postgresql: {columnName: 'mvm', dataType: 'character varying', dataLength: 3, dataPrecision: null, dataScale: null, nullable: 'NO'},
+    postgresql: { columnName: 'mvm', dataType: 'character varying', dataLength: 3, dataPrecision: null, dataScale: null, nullable: 'NO' },
   })
   mvm: string;
 
@@ -17,10 +17,12 @@ export class Cismvm2 extends Entity {
     type: 'string',
     required: true,
     length: 255,
-    postgresql: {columnName: 'nazev', dataType: 'character varying', dataLength: 255, dataPrecision: null, dataScale: null, nullable: 'NO'},
+    postgresql: { columnName: 'nazev', dataType: 'character varying', dataLength: 255, dataPrecision: null, dataScale: null, nullable: 'NO' },
   })
   nazev: string;
 
+  @hasMany(() => Material, { keyTo: 'MVM' })
+  materials: Material[];
   // Define well-known properties here
 
   // Indexer property to allow additional data

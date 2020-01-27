@@ -16,7 +16,7 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
-let MaterialStandardController = class MaterialStandardController {
+let MaterialPOSTGRESCiselnikController = class MaterialPOSTGRESCiselnikController {
     constructor(materialRepository) {
         this.materialRepository = materialRepository;
     }
@@ -71,7 +71,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "create", null);
+], MaterialPOSTGRESCiselnikController.prototype, "create", null);
 __decorate([
     rest_1.get('/materials/count', {
         responses: {
@@ -85,7 +85,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "count", null);
+], MaterialPOSTGRESCiselnikController.prototype, "count", null);
 __decorate([
     rest_1.get('/materials', {
         responses: {
@@ -106,7 +106,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "find", null);
+], MaterialPOSTGRESCiselnikController.prototype, "find", null);
 __decorate([
     rest_1.patch('/materials', {
         responses: {
@@ -127,7 +127,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [models_1.Material, Object]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "updateAll", null);
+], MaterialPOSTGRESCiselnikController.prototype, "updateAll", null);
 __decorate([
     rest_1.get('/materials/{id}', {
         responses: {
@@ -146,7 +146,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "findById", null);
+], MaterialPOSTGRESCiselnikController.prototype, "findById", null);
 __decorate([
     rest_1.patch('/materials/{id}', {
         responses: {
@@ -166,7 +166,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, models_1.Material]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "updateById", null);
+], MaterialPOSTGRESCiselnikController.prototype, "updateById", null);
 __decorate([
     rest_1.put('/materials/{id}', {
         responses: {
@@ -180,7 +180,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, models_1.Material]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "replaceById", null);
+], MaterialPOSTGRESCiselnikController.prototype, "replaceById", null);
 __decorate([
     rest_1.del('/materials/{id}', {
         responses: {
@@ -193,10 +193,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], MaterialStandardController.prototype, "deleteById", null);
-MaterialStandardController = __decorate([
+], MaterialPOSTGRESCiselnikController.prototype, "deleteById", null);
+MaterialPOSTGRESCiselnikController = __decorate([
     __param(0, repository_1.repository(repositories_1.MaterialRepository)),
     __metadata("design:paramtypes", [repositories_1.MaterialRepository])
-], MaterialStandardController);
-exports.MaterialStandardController = MaterialStandardController;
+], MaterialPOSTGRESCiselnikController);
+exports.MaterialPOSTGRESCiselnikController = MaterialPOSTGRESCiselnikController;
 //# sourceMappingURL=material-standard.controller.js.map

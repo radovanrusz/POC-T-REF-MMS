@@ -7,11 +7,11 @@ import { Cismvm2Repository } from './cismvm2.repository';
 
 export class MaterialRepository extends DefaultCrudRepository<
   Material,
-  typeof Number,
+  typeof Material.prototype.id,
   MaterialRelations
   > {
 
-  public readonly cismvm2: BelongsToAccessor<Cismvm2, typeof String>;
+  public readonly cismvm2: BelongsToAccessor<Cismvm2, typeof Cismvm2.prototype.id>;
 
   // DB2
   // public readonly cismvm: BelongsToAccessor<Cismvm, typeof String>;

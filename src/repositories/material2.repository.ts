@@ -12,7 +12,7 @@ export class Material2Repository extends DefaultCrudRepository<
   > {
 
   //TZ: zmenit na string
-  public readonly cismvm2: BelongsToAccessor<Cismvm, typeof String>;
+  public readonly cismvm2: BelongsToAccessor<Cismvm, typeof Cismvm.prototype.id>;
 
   constructor(
     @inject('datasources.db2') dataSource: Db2DataSource, @repository.getter('CismvmRepository') protected cismvm2RepositoryGetter: Getter<CismvmRepository>,

@@ -20,7 +20,7 @@ import {
 import { Material2 } from '../models/material2.model';
 import { Material2Repository } from '../repositories/material2.repository';
 
-export class Material2StandardControllerController {
+export class MaterialWithDB2CiselnikController {
   constructor(
     @repository(Material2Repository)
     public material2Repository: Material2Repository,
@@ -83,9 +83,11 @@ export class Material2StandardControllerController {
     @param.query.object('filter', getFilterSchemaFor(Material2)) filter?: Filter<Material2>,
   ): Promise<Material2[]> {
     const result0 = this.material2Repository.find({ include: [{ relation: 'MVM' }] });
+    /*
     console.log(JSON.stringify(result0))
     const result1 = this.material2Repository.find(filter);
     console.log(JSON.stringify(result1))
+    */
     return result0
   }
 
