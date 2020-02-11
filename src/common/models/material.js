@@ -69,7 +69,7 @@ module.exports = function(Material) {
             );
             // app.dataSources.db.transaction(
             promises.push(
-                Material.doSinglePut(item.id, item.kmat, item.mvm, item.hmotnost, item.mnozstvi)
+                Material.doSinglePut(item.id, (item.kmat == null) ? null : item.kmat.trim(), (item.mvm == null) ? null : item.mvm.trim(), item.hmotnost, item.mnozstvi)
                     .then(function(inst) {
                         var mDate = new Date();
                         var mDateStr = mDate.toString('dddd MMM yyyy h:mm:ss');
@@ -440,7 +440,7 @@ module.exports = function(Material) {
     Material.doLogic = function(inst, kmat, mvm, hmotnost, mnozstvi, updateData) {
         return new Promise(function(resolve, reject) {
             var resp = {'insertData': null, 'updateData': null, 'inst': inst};
-            if (inst.mvm == mvm) {
+            if (inst.mvm.trim() == mvm.trim()) {
                 resp.updateData = updateData;
                 resolve(resp);
             }

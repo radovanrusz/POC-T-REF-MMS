@@ -18,8 +18,13 @@ COPY . /app
 
 RUN npm i  && ln -s /app/node_modules/ /node_modules
 
-ENV PORT 80
-EXPOSE 80
+ENV PORT=3001
+
+ENV KAFKA_HOST=kafka
+ENV KAFKA_PORT=9092
+ENV KAFKA_TOPIC=warehouse-movement
+
+EXPOSE 3001
 
 CMD ["node", "src/server/server.js"]
 #CMD exec /bin/sh -c "trap : TERM INT; (while true; do sleep 1000; done) & wait"

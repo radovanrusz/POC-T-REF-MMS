@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "192.168.2.45",
+    "host": "mmsdb2",
     "port": 50000,
     "database": "testdb",
     "password": "db234",
