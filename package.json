@@ -15,7 +15,7 @@
     "posttest": "npm run lint && npm audit"
   },
   "dependencies": {
-    "async": "^1.5.0",
+    "async": "^2.6.4",
     "body-parser": "^1.14.1",
     "compression": "^1.0.3",
     "cookie-parser": "^1.4.0",
