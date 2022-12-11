@@ -20,7 +20,7 @@
     "compression": "^1.0.3",
     "cookie-parser": "^1.4.0",
     "cors": "^2.5.2",
-    "express": "^4.13.3",
+    "express": "^4.17.3",
     "helmet": "^3.10.0",
     "ibm_db2": "latest",
     "kafka-node": "^5.0.0",
